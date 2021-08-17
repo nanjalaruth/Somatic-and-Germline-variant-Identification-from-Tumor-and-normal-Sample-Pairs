@@ -6,7 +6,7 @@
 1. Galaxy Workflow:
 - Rachael 
 - Mercy
-
+- Cynthia
 
 
 2. Linux Workflow
