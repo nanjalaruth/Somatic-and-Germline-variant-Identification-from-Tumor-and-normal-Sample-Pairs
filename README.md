@@ -11,6 +11,7 @@
 - Kauthar Omar
 -  Violet Nwoke
 - @Amarachukwu
+- @Mallika
 
 
 2. Linux Workflow
