@@ -18,5 +18,6 @@
 - Ruth Moraa
 - Kauthar Omar
 - Gladys Rotich
+- Ruth Nanjala
 
 
