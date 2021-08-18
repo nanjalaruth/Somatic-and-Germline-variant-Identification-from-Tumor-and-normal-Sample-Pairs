@@ -4,7 +4,7 @@
 **Workflow to work with**
 
 1. Galaxy Workflow:
-- Rachael 
+- @Rachael 
 - Mercy
 - Cynthia
 - Heshica Battina Chowdary
