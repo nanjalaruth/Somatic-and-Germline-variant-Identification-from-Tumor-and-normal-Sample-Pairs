@@ -12,7 +12,7 @@
 -  Violet Nwoke
 - @Amarachukwu
 - @Mallika
-
+- Olamide 
 
 2. Linux Workflow
 - Praise 
