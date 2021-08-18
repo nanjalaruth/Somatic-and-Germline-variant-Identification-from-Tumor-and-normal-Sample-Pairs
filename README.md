@@ -10,6 +10,7 @@
 - Heshica Battina Chowdary
 - Kauthar Omar
 -  Violet Nwoke
+- @Amarachukwu
 
 
 2. Linux Workflow
