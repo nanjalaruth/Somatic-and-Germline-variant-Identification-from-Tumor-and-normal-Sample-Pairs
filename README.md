@@ -7,13 +7,16 @@
 - Rachael 
 - Mercy
 - Cynthia
-- Heshica Battina Chowdary 
-
-
+- Heshica Battina Chowdary
+- Kauthar Omar
+-  
 
 
 2. Linux Workflow
 - Praise 
 - Fredrick Kakembo
 - Ruth Moraa
+- Kauthar Omar
 - 
+
+
