@@ -9,7 +9,7 @@
 - Cynthia
 - Heshica Battina Chowdary
 - Kauthar Omar
--  
+-  Violet Nwoke
 
 
 2. Linux Workflow
