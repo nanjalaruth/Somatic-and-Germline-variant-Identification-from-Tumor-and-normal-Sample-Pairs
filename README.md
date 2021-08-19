@@ -10,7 +10,7 @@
 - Heshica Battina Chowdary
 - Kauthar Omar
 -  Violet Nwoke
-- @Amarachukwu
+- # **@Amarachukwu - Gemini annotate(CGI) and Gemini query**
 - @Mallika
 - Olamide 
 - @Marvellous
