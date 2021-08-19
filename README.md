@@ -14,7 +14,7 @@
 - @Mallika
 - Olamide 
 - @Marvellous
--@NadaaHussienn
+- @NadaaHussienn
 
 2. Linux Workflow
 - Praise 
