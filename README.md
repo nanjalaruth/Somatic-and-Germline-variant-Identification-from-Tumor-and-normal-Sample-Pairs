@@ -10,14 +10,13 @@
 - Heshica Battina Chowdary
 - Kauthar Omar
 -  Violet Nwoke
+-  @AmaraA
 - ### **@Amarachukwu - Gemini annotate(CGI) and Gemini query**
 - @Mallika
 - Olamide 
 - @Marvellous
 - @NadaaHussienn
 - @Christabel
-- @AmaraA
-- 
 
 2. Linux Workflow
 - Praise 
