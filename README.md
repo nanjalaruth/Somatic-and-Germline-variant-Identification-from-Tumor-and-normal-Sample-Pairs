@@ -6,7 +6,7 @@
 1. Galaxy Workflow:
 - @Rachael 
 - Mercy
-- Cynthia
+- @Orinda
 - Heshica Battina Chowdary
 - @Kauthar
 -  Violet Nwoke
