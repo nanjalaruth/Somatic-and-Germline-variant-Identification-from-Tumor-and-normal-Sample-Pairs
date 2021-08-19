@@ -16,6 +16,8 @@
 - @Marvellous
 - @NadaaHussienn
 - @Christabel
+- @AmaraA
+- 
 
 2. Linux Workflow
 - Praise 
