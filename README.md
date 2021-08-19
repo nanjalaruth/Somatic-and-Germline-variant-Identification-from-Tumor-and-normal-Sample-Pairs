@@ -8,10 +8,10 @@
 - Mercy
 - Cynthia
 - Heshica Battina Chowdary
-- Kauthar Omar
+- @Kauthar
 -  Violet Nwoke
 -  @AmaraA
-- ### **@Amarachukwu - Gemini annotate(CGI) and Gemini query**
+- **@Amarachukwu - Gemini annotate(CGI) and Gemini query**
 - @Mallika
 - Olamide 
 - @Marvellous
@@ -22,7 +22,7 @@
 - Praise 
 - Fredrick Kakembo
 - Ruth Moraa
-- Kauthar Omar
+- @Kauthar
 - Gladys Rotich
 - Ruth Nanjala
 
