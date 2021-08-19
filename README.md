@@ -9,7 +9,7 @@
 - @Orinda
 - Heshica Battina Chowdary
 - @Kauthar
--  Violet Nwoke
+- @VioletNwoke
 -  @AmaraA
 - **@Amarachukwu - Gemini annotate(CGI) and Gemini query**
 - @Mallika
