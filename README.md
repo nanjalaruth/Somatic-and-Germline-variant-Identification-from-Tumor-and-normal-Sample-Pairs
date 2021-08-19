@@ -19,7 +19,7 @@
 - @Christabel
 
 2. Linux Workflow
-- Praise 
+- @Praise 
 - Fredrick Kakembo
 - Ruth Moraa
 - @Kauthar
