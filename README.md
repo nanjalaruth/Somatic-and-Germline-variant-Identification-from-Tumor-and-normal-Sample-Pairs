@@ -1,4 +1,4 @@
-# Somatic-and-Germline-variant-Identification-from-Tumor-and-normal-Sample-Pairs
+# Somatic-and-Germline-Variant-Identification-from-Tumor-and-Normal-Sample-Pairs
 
 
 **Workflow to work with**
