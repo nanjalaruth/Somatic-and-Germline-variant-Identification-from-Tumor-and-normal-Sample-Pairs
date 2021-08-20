@@ -346,7 +346,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 ##  List of team members according to the environment used:
 
 1. Galaxy Workflow:
-- @Rachael - Adding genetic and clinical evidence-based annotations [galaxy workflow](https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1)
+- @Rachael - Adding genetic and clinical evidence-based annotations [Link to galaxy workflow](https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1)
 - @Mercy
 - @Orinda
 - @Heshica
