@@ -115,11 +115,39 @@ Paramaters
 - For parameters not listed, default setting was used.
 
 #MAPPED READS POSTPROCESSING
+#Mapped reads filtering
+The tool used was a BAM tools filter called:![](https://i.imgur.com/xkurc1C.png) available on Galaxy. It produces newly filtered BAM datasets and only retains reads mapped to the reference successfully and have a minimal mapping quality of 1 and for which the mate read has also been mapped.
+The quality of the output data is controlled by a series ofconditions and filters.
+
+The BAM tools filter was run with these parameters:
+The BAM datasets we filtered were:
+1. The output of Map with BWA(mapped reads in BAM format)
+![](https://i.imgur.com/AWEyljF.png)
+2. The output of Map with BWA (mapped reads in BAM format)![](https://i.imgur.com/VmShNr5.png)
+
+The quality of the output data is controlled by a series of conditions and filters.
+The Conditions set were as below:
+The first filter involved selecting a BAM property to filter on which was mapQuality+ the filter on read mapping quality (on a phred scale):>=1 
+The mapping quality scale quantifies the probability that a read was misplaced.
+
+The second filter involved selecting another BAM property to filter,for which we selected:isMapped(for mapped reads)+Selected mapped reads>Yes
+
+The third filter involved selecting yet another BAM property to filter for which we selected isMateMapped (for paired-end reads with long inserts)+a confirmation to select mapped reads>yes
+
+The last condition set involving opting to set rules for which we selected>No
+
+![](https://i.imgur.com/p9NcqM1.png)Then we ran the job
+
+This was done for both the normal and tumor tissue data thus resulting in two datasets in the output results
 
 	
+#Duplicate Reads Removal
+Tool:![](https://i.imgur.com/OPq6wgU.png)
 
-
-
+#### Significance
+RmDup is a tool that identifies PCR duplicates by identifying pairs of reads where multiple reads align to the same exact start position in the genome. PCR duplicates arise from multiple PCR products from the same template binding on the flow cell.These are usually removed because they can lead to false positives<br>The read pair with the highest mapping quality score is kept and the other pairs are discarded.<br>It is important to note that this tool does not work for unpaired reads(in paired end mode) or reads that would pair where each maps to different chromosomes.<br>We used filtered reads datasets(BAM file) from the normal and the tumor tissue data- *outputs of Filter BAM datasets on a variety of attributes* .
+We run RmDup on the following parameters:![](https://i.imgur.com/b2IeqaC.png)and ![](https://i.imgur.com/3m1NMRc.png)The result was two new datasets in BAM format.The duplicate rate for both sets was well below 10% which is considered good.The tool standard error reflected the results below of unmatched pairs on chr5 and chr12 that otherwise were not included in the output data.<br>
+![](https://i.imgur.com/PCxnoWE.png)
 	
 
 #Left-align reads around indels
@@ -227,7 +255,7 @@ The aim of including extra annotations to the GEMINI-generated gene report (that
 
 By simply using the Join two files tools on Galaxy, this task was  achieved. After which, irrelevant columns were removed by specifying the columns that are needed. Three step wise process were involved here: One, we pulled the annotations found in Uniprot cancer genes dataset; second, we used the output of the last Join operation, annotated the newly formed gene-centered report with the CGI biomarkers datasets; and three, we used the output of the second Join operation, add the Gene Summaries dataset. Lastly, we ran Column arrange by header name to rearrange the fully-annotated gene-centered report and eliminate unspecified columns.
 
-The last output of the Join operation was selected in the “file to arrange” section. The following columns were specified: gene, chrom, synonym, hgnc_id, entrez_id, rvis_pct, is_TS, in_cgi_biomarkers, clinvar_gene_phenotype, gene_civic_url, and description. The [result](https://usegalaxy.eu/datasets/11ac94870d0bb33ad1ef777ece0abc12/display?to_ext=tabular) gotten was a tabular gene report, which was easy to understand and interpret.
+The last output of the Join operation was selected in the “file to arrange” section. The columns to be specified by name are: gene, chrom, synonym, hgnc_id, entrez_id, rvis_pct, is_TS, in_cgi_biomarkers, clinvar_gene_phenotype, gene_civic_url, and description. The result gotten was a tabular gene report which was easy to understand and interpret.
 
 
 # Section Two: `Linux Pipeline`
