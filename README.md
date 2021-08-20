@@ -114,30 +114,11 @@ Paramaters
 - Locally cached human hg19 reference genome, Paired end reads, Forward and reverse trimmed reads (output of trimmomatic), Set read groups (SAM/BAM specification), auto-assign (no), Read Group Identifier (231335 for normal tissue and 231336 for tumor tissue), Read group sample name (normal for normal tissue and tumor for tumor tissue),
 - For parameters not listed, default setting was used.
 
-## MAPPED READS POSTPROCESSING
-##### Mapped reads filtering
-Tool:![](https://i.imgur.com/xkurc1C.png)	
+#MAPPED READS POSTPROCESSING
 
-Significance: This produces newly filtered BAM datasets and only retains reads mapped to the reference successfully and have a minimal mapping quality of 1 and for which the mate read has also been mapped.
-
-
-![](https://i.imgur.com/7uymv1Z.png)was run
-with these parameters:
-The BAM datasets we filtered were:
-1. The output of Map with BWA(mapped reads in BAM format)
-![](https://i.imgur.com/AWEyljF.png)
-2. The output of Map with BWA (mapped reads in BAM format)![](https://i.imgur.com/VmShNr5.png)
-
-The quality of the output data is controlled by a series ofconditions and filters listed below:
-	
-	
 	
 
-### Duplicate Reads Removal
-Tool:![](https://i.imgur.com/OPq6wgU.png)
 
-#### Significance
-RmDup is a tool that identifies PCR duplicates by identifying pairs of reads where multiple reads align to the same exact start position in the genome. PCR duplicates arise from multiple PCR products from the same template binding on the flow cell.These are usually removed because they can lead to false positives<br>The read pair with the highest mapping quality score is kept and the other pairs are discarded.<br>It is important to note that this tool does not work for unpaired reads(in paired end mode) or reads that would pair where each maps to different chromosomes.<br>Note: It does not work for unpaired reads.<br>We used filtered reads datasets(BAM file) from the normal and the tumor tissue data- *outputs of Filter BAM datasets on a variety of attributes* .<br>We run RmDup on the following parameters:![](https://i.imgur.com/b2IeqaC.png)and ![](https://i.imgur.com/3m1NMRc.png)The result was two new datasets in BAM format.The duplicate rate for both sets was well below 10% which is considered good.The tool standard error reflected the results below of unmatched pairs on chr5 and chr12 that otherwise were not included in the output data!
 
 	
 
