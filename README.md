@@ -1,9 +1,23 @@
-# Somatic-and-Germline-Variant-Identification-from-Tumor-and-Normal-Sample-Pairs
+# Identification of somatic and germline variants from tumor and normal sample pairs
 
-## Our team produced this tutorial on both Linux environment and on Galaxy
+## Introduction
+
+
+
 
 ![Graphical Abstract](Graphic_Abstract-Genomics-Two-A.png)
 
+This workflow was produced both on the Galaxy platform as well as a Linux Pipeline
+
+# Section one:  `GALAXY WORKFLOW`
+
+
+
+# Section Two: `Linux Pipeline`
+
+
+
+--- 
 ##  List of team members according to the environment used:
 
 1. Galaxy Workflow:
