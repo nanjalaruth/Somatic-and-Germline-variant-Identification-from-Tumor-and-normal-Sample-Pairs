@@ -42,6 +42,7 @@ For Cancerhotspots: the last ouput generated from annotating dbSNP information w
  
 Links to CIVic: the output of the last Gemini annoate for cancerhotspots was annotated using the imported CIViC bed as annotation source. We extracted 4 elements from this source and again added them as a list of "overlapping_civic_urls" to the existing Gemini database. 
  
+For the Cancer Genome Interpreter: the last output with the extracted infomation linking to CIViC was further annotated using the tool Gemini annotate with the imported CGI variants as an annotation source. the information extracted was recorded in the Gemini database as "in_cgidb" being used as the column name.
  
  
  
