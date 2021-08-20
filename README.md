@@ -263,6 +263,7 @@ multiqc Fastqc -o Multiqc
 The multiqc report can be examined from [here](multiqc_report_linux.html). From the report we can see the quality of the reads are good however there are few adapters observed.
 
 ii) Trimming with trimmomatic
+	
 The reads were trimmed with Trimmomatic with the parameters shown below to remove adapter sequences and improve the quality of reads.
 
 ```
