@@ -117,7 +117,7 @@ Paramaters
 ## Mapped reads postprocessing
 	
 ### Mapped reads filtering
-The tool used was a BAM tools filter called:![](https://i.imgur.com/xkurc1C.png) available on Galaxy. It produces newly filtered BAM datasets and only retains reads mapped to the reference successfully and have a minimal mapping quality of 1 and for which the mate read has also been mapped.
+The tool used was a BAM tools filter called: ![](https://i.imgur.com/xkurc1C.png) available on Galaxy. It produces newly filtered BAM datasets and only retains reads mapped to the reference successfully and have a minimal mapping quality of 1 and for which the mate read has also been mapped.
 The quality of the output data is controlled by a series ofconditions and filters.
 
 The BAM tools filter was run with these parameters:
@@ -143,7 +143,7 @@ This was done for both the normal and tumor tissue data thus resulting in two da
 
 	
 ### Duplicate Reads Removal
-Tool:![](https://i.imgur.com/OPq6wgU.png)
+Tool: ![](https://i.imgur.com/OPq6wgU.png)
 
 #### Significance
 RmDup is a tool that identifies PCR duplicates by identifying pairs of reads where multiple reads align to the same exact start position in the genome. PCR duplicates arise from multiple PCR products from the same template binding on the flow cell.These are usually removed because they can lead to false positives<br>The read pair with the highest mapping quality score is kept and the other pairs are discarded.<br>It is important to note that this tool does not work for unpaired reads(in paired end mode) or reads that would pair where each maps to different chromosomes.<br>We used filtered reads datasets(BAM file) from the normal and the tumor tissue data- *outputs of Filter BAM datasets on a variety of attributes* .
