@@ -146,7 +146,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @Kauthar
 - @VioletNwoke
 - @AmaraA
-- @Amarachukwu -Gemini query
+- @Amarachukwu -GEMINI query
 - @Mallika
 - @Olamide ``
 - @NadaaHussienn
