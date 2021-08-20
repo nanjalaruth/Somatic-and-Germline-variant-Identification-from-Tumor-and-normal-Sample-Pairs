@@ -195,7 +195,7 @@ For example, for the forward read sequence for the normal tissue, the command us
 wget https://zenodo.org/record/2582555/files/SLGFSK-N_231335_r1_chr5_12_17.fastq.gz
 ```
  
- ## Mapped read postprocessing
+## Mapped read postprocessing
  After mapping of the sample sequences against the reference genome with the aim of determining the most likey source of the observed sequencing read. A sAM(sequence   alignment/map)format output is generated. The file has a single unified format for storing read alignments to a reference genome.
  
 ### Conversion of the SAM file to BAM file
