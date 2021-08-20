@@ -267,7 +267,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @Rachael -https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1
 - @Mercy
 - @Orinda
-- @Heshica -https://usegalaxy.eu/u/heshica_battina_chowdary/w/normal-and-tumor-analysisheshica-genomics-2a
+- @Heshica -My Workflow link:https://usegalaxy.eu/u/heshica_battina_chowdary/w/normal-and-tumor-analysisheshica-genomics-2a
 - @Kauthar
 - @VioletNwoke
 - @AmaraA
