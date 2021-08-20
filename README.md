@@ -57,10 +57,9 @@ o	There is a little presence of adaptors in the sequence.
 	
  
 
-
 ## Read Trimming and Filtering 
 
-The next process after quality control is Trimming and Filtering. This process further helps to trim and filter raw reads to give a more improved quality. 
+The next process after quality control is Trimming and Filtering. This process further helps to trim and filter raw reads to give a more improved quality.
 ° Tool - TRIMMOMATIC (Galaxy Version 0. 38. 0) is a fast, multithreaded command line tool that can be used to trim and crop low quality reads and remove the present adaptors in the reads to improve the quality of these processing datasets.
 
 ° Input data - The forward read FASTQ file (r1) and the reverse read FASTQ file (r2) of the normal tissue is run concurrently as paired-end by performing initial ILLUMINACLIP step. 
@@ -82,7 +81,7 @@ In the second Trimmomatic operation, "Cut bases off the end of a read, if below 
 "10" is set as Minimum quality required to keep a base. 
 
 In the third Trimmomatic operation, "Drop reads below a specified length (MINLEN)" is selected as the Trimmomatic operation to perform. 
-"25"is set as minimum quality required to keep a base 
+"25" is set as minimum quality required to keep a base 
 
 We run this and generate four datasets. Two of the data sets are the trimmed forward and reverse reads of the normal tissue and the other two are empty (which should be deleted) 
 
@@ -106,6 +105,7 @@ The quality reads did not change much as the datasets were already of high quali
 	
 ![Quality Report](https://scontent.fcai20-3.fna.fbcdn.net/v/t39.30808-6/239939775_10225646828178783_4978182995878171958_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_eui2=AeEbSPFnKNZSQ1lwLKiEAJN7PU9sMEthmiU9T2wwS2GaJaw4KG3CdEHZIDmkt9PEA10&_nc_ohc=LCgTxenAqUQAX8ba8w4&_nc_ht=scontent.fcai20-3.fna&oh=fe03893345cfc2a4f0382c2c40544e91&oe=6125378E)
  
+
 ## Mapped Read Postprocessing
 
 #Left-align reads around indels
@@ -264,8 +264,8 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @AmaraA
 - @Amarachukwu -Gemini query
 - @Mallika
-- @Olamide ``
-- @NadaaHussienn
+- @Olamide - Read Trimming and Filtering 
+- @NadaaHussienn - Quality Control and Check
 - @Christabel
 - @Marvellous  
  
