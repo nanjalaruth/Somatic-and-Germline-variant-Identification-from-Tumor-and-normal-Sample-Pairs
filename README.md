@@ -15,7 +15,7 @@ This tutorial was reproduced on the Galaxy platform and with Linux Pipeline
 
 ## Data Preparation:
 
-•	The sequencing reads that were used for analysis were obtained from a cancer patient's normal and tumor tissues. 
+The sequencing reads that were used for analysis were obtained from a cancer patient's normal and tumor tissues. 
 There were a total of four samples. A forward reads sample and a reverse reads sample was obtained for both the normal and tumor tissue. A human reference genome, hg19 version was also used for analysis. 
 	
 The first step is to create a new history and rename it in the galaxy window. To import files via links, click on the 'Upload' button on the left side toolbar and select 'Paste/Fetch Data'. Paste the link of your samples here and select datatype as 'fastqsanger.gz'. Click on Start and close the import window.  For the reference genome, paste the link to the file and select the datatype a 'fasta'.
