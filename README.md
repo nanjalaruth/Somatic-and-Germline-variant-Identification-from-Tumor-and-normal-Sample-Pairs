@@ -45,9 +45,48 @@ Links to CIVic: the output of the last Gemini annoate for cancerhotspots was ann
 For the Cancer Genome Interpreter: the last output with the extracted infomation linking to CIViC was further annotated using the tool Gemini annotate with the imported CGI variants as an annotation source. the information extracted was recorded in the Gemini database as "in_cgidb" being used as the column name.
  
  
+ ## Reporting Selected Subsets of Variants with GEMINI Query
  
+GEMINI query syntax is built on the SQLite dialect of SQL. This query language enables users express different ideas when exploring variant datasets, for this analysis four (4) stepwise GEMINI queries were carried out.
  
+1.	A query to obtain the report of bona fide somatic variants
+“GEMINI database”: the fully annotated database created in the last GEMINI annotate step i.e., Cancer Genome Interpreter(CGI)
  
+“Build GEMINI query using”: Basic variant query constructor
+“Insert Genotype filter expression”: gt_alt_freqs.NORMAL <= 0.05 AND gt_alt_freqs.TUMOR >= 0.10
+This genotype filter aims to read only variants that are supported by less than 5% of the normal sample, but more than 10% of the tumor sample reads collectively
+ “Additional constraints expressed in SQL syntax”: somatic_status = 2
+This somatic status called by VarScan somatic is one of the information stored in the GEMINI database.
+By default, the report of this run would be output in tabular format; and a column header is added to it output.
+The following columns were selected
+
+o	“chrom”
+o	“start”
+o	“ref”
+o	“alt”
+•	“Additional columns (comma-separated)”: gene, aa_change, rs_ids, hs_qvalue, cosmic_ids
+ These columns are gotten from the variants table of the GEMINI database.
+
+2.	This second step has the same settings as the above step except for:
+
+•	“Additional constraints expressed in SQL syntax”: somatic_status = 2 AND somatic_p <= 0.05 AND filter IS NULL
+
+3.	Run GEMINI query with same settings as step two, excepting: 
+
+•	In “Output format options”
+“Additional columns (comma-separated)”: type, gt_alt_freqs.TUMOR, gt_alt_freqs.NORMAL, ifnull(nullif(round(max_aaf_all,2),-1.0),0) AS MAF, gene, impact_so, aa_change, ifnull(round(cadd_scaled,2),'.') AS cadd_scaled, round(gerp_bp_score,2) AS gerp_bp, ifnull(round(gerp_element_pval,2),'.') AS gerp_element_pval, ifnull(round(hs_qvalue,2), '.') AS hs_qvalue, in_omim, ifnull(clinvar_sig,'.') AS clinvar_sig, ifnull(clinvar_disease_name,'.') AS clinvar_disease_name, ifnull(rs_ids,'.') AS dbsnp_ids, rs_ss, ifnull(cosmic_ids,'.') AS cosmic_ids, ifnull(overlapping_civic_url,'.') AS overlapping_civic_url, in_cgidb
+
+## Generating Reports of Genes Affected by Variants
+                                                                                           
+In this step, gene-centred report is generated based on the same somatic variants we selected above.
+As in the previous step we run GEMINI query but in advanced mode 
+•	“Build GEMINI query using”: Advanced query constructor
+
+•	“The query to be issued to the database”: SELECT v.gene, v.chrom, g.synonym, g.hgnc_id, g.entrez_id, g.rvis_pct, v.clinvar_gene_phenotype FROM variants v, gene_detailed g WHERE v.chrom = g.chrom AND v.gene = g.gene AND v.somatic_status = 2 AND v.somatic_p <= 0.05 AND v.filter IS NULL GROUP BY g.gene
+
+However the “Genotype filter expression”: gt_alt_freqs.NORMAL <= 0.05 AND gt_alt_freqs.TUMOR >= 0.10 remains the same
+
+
  
 
  
@@ -57,9 +96,9 @@ For the Cancer Genome Interpreter: the last output with the extracted infomation
 ## Adding additional Annotation to the Gene-Centered Report
 The aim of including extra annotations to the GEMINI-generated gene report (that is, the output of the last GEMINI query) is to make interpreting the final output easier. While GEMINI-annotate allowed us to add specific columns to the table of the database we created, it does not allow us to include additional annotations into the tabular gene report.
  
-By simply using the Join two files tools on Galaxy, this task was be achieved. After which, irrelevant columns were removed by specifying the columns that are needed. Three step wise process were involved here: One, we pulled the annotations found in Uniprot cancer genes dataset; second, we used the output of the last Join operation, annotated the newly formed gene-centered report with the CGI biomarkers datasets; and three, we used the output of the second Join operation, add the Gene Summaries dataset. Lastly, we ran Column arrange by header name to rearrange the fully-annotated gene-centered report and eliminate unspecified columns.
+By simply using the Join two files tools on Galaxy, this task was  achieved. After which, irrelevant columns were removed by specifying the columns that are needed. Three step wise process were involved here: One, we pulled the annotations found in Uniprot cancer genes dataset; second, we used the output of the last Join operation, annotated the newly formed gene-centered report with the CGI biomarkers datasets; and three, we used the output of the second Join operation, add the Gene Summaries dataset. Lastly, we ran Column arrange by header name to rearrange the fully-annotated gene-centered report and eliminate unspecified columns.
 
-The last output of the Join operation was selected in the “file to arrange” section. The columns to be specified by name are: gene, chrom, synonym, hgnc_id, entrez_id, rvis_pct, is_TS, in_cgi_biomarkers, clinvar_gene_phenotype, gene_civic_url, and description. The result gotten was a tabular gene report, which was easy to understand and interpret.
+The last output of the Join operation was selected in the “file to arrange” section. The columns to be specified by name are: gene, chrom, synonym, hgnc_id, entrez_id, rvis_pct, is_TS, in_cgi_biomarkers, clinvar_gene_phenotype, gene_civic_url, and description. The result gotten was a tabular gene report which was easy to understand and interpret.
  
  
 # Section Two: `Linux Pipeline`
@@ -98,7 +137,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @Kauthar
 - @VioletNwoke
 - @AmaraA
-- **@Amarachukwu - Gemini annotate(CGI) and Gemini query**
+- @Amarachukwu -Gemini query
 - @Mallika
 - @Olamide ``
 - @NadaaHussienn
