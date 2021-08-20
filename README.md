@@ -115,7 +115,8 @@ Paramaters
 - For parameters not listed, default setting was used.
 
 ## Mapped reads postprocessing
-#Mapped reads filtering
+	
+### Mapped reads filtering
 The tool used was a BAM tools filter called:![](https://i.imgur.com/xkurc1C.png) available on Galaxy. It produces newly filtered BAM datasets and only retains reads mapped to the reference successfully and have a minimal mapping quality of 1 and for which the mate read has also been mapped.
 The quality of the output data is controlled by a series ofconditions and filters.
 
@@ -141,7 +142,7 @@ The last condition set involving opting to set rules for which we selected>No
 This was done for both the normal and tumor tissue data thus resulting in two datasets in the output results
 
 	
-#Duplicate Reads Removal
+### Duplicate Reads Removal
 Tool:![](https://i.imgur.com/OPq6wgU.png)
 
 #### Significance
