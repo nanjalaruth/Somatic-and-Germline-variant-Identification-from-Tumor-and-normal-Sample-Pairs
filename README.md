@@ -8,12 +8,12 @@
 ![Graphical Abstract](Graphic_Abstract-Genomics-Two-A.png)
 
 ## Introduction
-Mutations are abrupt changes in the sequence of basis in the DNA or RNA of an organism. A single change or more in one of the DNA nucleotides can have a large effect on an organism. This effect can be beneficial, harmful or neutral. Beneficial mutations allow for evolution to occur and they are the ultimate source of genetic variation in any species.
+Mutations are abrupt changes in the sequence of basis in the DNA or RNA of an organism. A single change or more in one of the DNA nucleotides can have a large effect on an organism. This effect can be beneficial, harmful or neutral. Beneficial mutations allow for evolution to occur and they are the ultimate source of genetic variation in any species while harmful mutation result or contribute to diseases like cancer.
 
-A typical example of a harmful mutation is cancer.
+ typical example of a harmful mutation is cancer.
 
 A cell is said to be cancerous when it begins to grow and divide uncontrollably, infiltrates and destroy normal body tissues.
-Cancer is the second leading cause of death in the world and they occur as a result of mutations and it is a somatic mutation.
+Cancer is the second leading cause of death in the world and they occur as a result of mutations.
 These mutations can be germline or somatic. The major difference between the two is, the first is inherited while the latter is acquired after birth. Another kind of genetic mutation that can occur is Loss of Heterozygosity which is a result of either somatic or germline mutations. This type of mutation usually lead to the loss of one normal copy of a gene or a group of genes and this is a common event in cancer development.
 To detect if a cell is cancerous, it is important one compare the genome sequence of a tumour from a patient with healthy tissue from the same patient. By comparing the two, the spectrum of mutations that distinguish the tumour from healthy tissues can be determined and cancerous cells can be detected
 
