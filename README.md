@@ -1,29 +1,30 @@
 # Somatic-and-Germline-Variant-Identification-from-Tumor-and-Normal-Sample-Pairs
 
+## Our team produced this tutorial on both Linux environment and on Galaxy
 
-**Workflow to work with**
+##  List of team members according to the environment used:
 
 1. Galaxy Workflow:
 - @Rachael 
-- Mercy
+- @Mercy
 - @Orinda
-- Heshica Battina Chowdary
+- @Heshica
 - @Kauthar
 - @VioletNwoke
--  @AmaraA
+- @AmaraA
 - **@Amarachukwu - Gemini annotate(CGI) and Gemini query**
 - @Mallika
-- Olamide 
+- @Olamide 
 - @Marvellous
 - @NadaaHussienn
 - @Christabel
 
 2. Linux Workflow
 - @Praise 
-- Fredrick Kakembo
-- Ruth Moraa
+- @Fredrick
+- @RuthMoraa
 - @Kauthar
-- Gladys Rotich
-- Ruth Nanjala
+- @Gladys
+- @Nanje
 
 
