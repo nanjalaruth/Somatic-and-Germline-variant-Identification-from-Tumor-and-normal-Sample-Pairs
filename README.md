@@ -72,8 +72,7 @@ The following columns were selected
 *	“ref”
 *	“alt”
  
-*	“Additional columns (comma-separated)”: *gene, aa_change, rs_ids, hs_qvalue, cosmic_ids*
- These columns are gotten from the variants table of the GEMINI database.
+	“Additional columns (comma-separated)”: *gene, aa_change, rs_ids, hs_qvalue, cosmic_ids*. These columns are gotten from the variants table of the GEMINI database.
 
 2.	This second step has the same settings as the above step except for:
 
