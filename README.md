@@ -61,32 +61,14 @@ o	There is a little presence of adaptors in the sequence.
 ## Read Trimming and Filtering
 
 The next process after quality control is Trimming and Filtering. This process further helps to trim and filter raw reads to give a more improved quality.
+
 ° Tool - TRIMMOMATIC (Galaxy Version 0. 38. 0) is a fast, multithreaded command line tool that can be used to trim and crop low quality reads and remove the present adaptors in the reads to improve the quality of these processing datasets.
 
-° Input data - The forward read FASTQ file (r1) and the reverse read FASTQ file (r2) of the normal tissue is run concurrently as paired-end by performing initial ILLUMINACLIP step.
+° Input data - The forward read FASTQ file (r1) and the reverse read FASTQ file (r2) of the normal tissue were run concurrently as paired-end by performing initial ILLUMINACLIP step.
 
-° Process - Under the ILLUMINACLIP step, the adapter is set to standard and "TruSeq3 (paired-ended, for MiSeq and HiSeq)" set as adapter sequence to use.
-The maximum mismatch count is set at "2".
-The accuracy between two adapter ligated is set at "30".
-The accuracy between any adapter is set as "10".
-The minimum length of adapter to be detected is set as "8".
-We select "yes" to always keep both reads.
-These parameters are used to cut Illumina-specific adapter sequences from the reads.
 
-° In performing the Trimmomatic Operation, three steps are involved.
-
-In the first Trimmomatic operation, "Cut the specified number of bases from the start of the read (HEADCROP)" is selected as the Trimmomatic operation to perform.
-"3" is set as Number of bases to remove from the start of the read.
-
-In the second Trimmomatic operation, "Cut bases off the end of a read, if below a threshold quality (TRAILING)" is selected as the Trimmomatic operation to perform.
-"10" is set as Minimum quality required to keep a base.
-
-In the third Trimmomatic operation, "Drop reads below a specified length (MINLEN)" is selected as the Trimmomatic operation to perform.
-"25" is set as minimum quality required to keep a base
-
-We run this and generate four datasets. Two of the data sets are the trimmed forward and reverse reads of the normal tissue and the other two are empty (which should be deleted)
-
-The process is repeated for the forward read FASTQ file (r1) and reverse read FASTQ file (r2) of the tumor tissue.
+° Output data - Trimmed forward and reverse reads for each normal and tumor tissue. 
+              - Orphaned forward and reverse reads for each normal and tumor tissue which the corresponding mate got dropped because of insufficient length after trimming. These datasets are empty and therefore deleted. 
 
 
 
