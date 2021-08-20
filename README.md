@@ -114,7 +114,7 @@ Paramaters
 - Locally cached human hg19 reference genome, Paired end reads, Forward and reverse trimmed reads (output of trimmomatic), Set read groups (SAM/BAM specification), auto-assign (no), Read Group Identifier (231335 for normal tissue and 231336 for tumor tissue), Read group sample name (normal for normal tissue and tumor for tumor tissue),
 - For parameters not listed, default setting was used.
 
-#MAPPED READS POSTPROCESSING
+# Mapped read postprocessing
 #Mapped reads filtering
 The tool used was a BAM tools filter called:![](https://i.imgur.com/xkurc1C.png) available on Galaxy. It produces newly filtered BAM datasets and only retains reads mapped to the reference successfully and have a minimal mapping quality of 1 and for which the mate read has also been mapped.
 The quality of the output data is controlled by a series ofconditions and filters.
