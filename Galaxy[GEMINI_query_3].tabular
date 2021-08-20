@@ -1,0 +1,49 @@
+chrom	start	ref	alt	type	MAF	gene	impact_so	aa_change	cadd_scaled	gerp_bp	gerp_element_pval	hs_qvalue	in_omim	clinvar_sig	clinvar_disease_name	dbsnp_ids	rr_ss	cosmic_ids	overlapping_civic_url	in_cgidb	gt_alt_freqs.TUMOR	gt_alt_freqs.NORMAL
+chr5	3509001	T	C	snp	0	LINC01019	intron_variant		0.45	0.25	.	.	0	.	.	.	None	.	.	0	0.18292682926829268	0.0
+chr5	19839246	G	A	snp	0	CDH18	5_prime_UTR_variant		11.46	4.15	0.0	.	0	.	.	.	None	.	.	0	0.11475409836065574	0.0
+chr5	21755737	G	A	snp	0.0	CDH12	missense_variant	p.Ala616Val	26.4	5.56	0.0	.	0	.	.	rs748295992	0	.	.	0	0.14942528735632185	0.0
+chr5	34840951	G	T	snp	0	TTC23L	intron_variant		0.93	0.22	.	.	0	.	.	.	None	.	.	0	0.21052631578947367	0.0
+chr5	35670199	A	G	snp	0.0	SPEF2	synonymous_variant	p.Leu465Leu	3.86	-5.8	0.0	.	0	.	.	rs151060493	0	.	.	0	0.25757575757575757	0.0
+chr5	41052483	C	A	snp	0	MROH2B	intron_variant		4.43	-2.38	.	.	0	.	.	.	None	.	.	0	0.2222222222222222	0.0
+chr5	51376564	C	A	snp	0	ISL1-PELO	intergenic_region		1.56	0.57	.	.	0	.	.	.	None	.	.	0	0.2578125	0.0
+chr5	74930649	G	A	snp	0	ANKDD1B	intron_variant		0.35	-6.57	.	.	0	.	.	.	None	.	.	0	0.29545454545454547	0.0
+chr5	82786126	G	T	snp	0	VCAN	missense_variant	p.Gly94Val	31.0	5.78	0.0	.	0	.	.	.	None	.	.	0	0.19745222929936307	0.0
+chr5	82937311	C	A	snp	0	HAPLN1	3_prime_UTR_variant		0.47	3.1	0.0	.	0	.	.	.	None	.	.	0	0.23684210526315788	0.0
+chr5	85915175	C	T	snp	0	COX7C	missense_variant	p.Pro28Ser	28.4	5.6	0.0	.	0	.	.	.	None	.	.	0	0.25	0.0
+chr5	94877113	A	C	snp	0	TTC37	intron_variant		12.59	-4.26	.	.	0	.	.	.	None	.	.	0	0.20588235294117646	0.0
+chr5	111788105	C	T	snp	0	EPB41L4A-AS2-LOC102467214	intergenic_region		7.86	0.47	.	.	0	.	.	.	None	.	.	0	0.17543859649122806	0.0
+chr5	112175422	C	T	snp	0	APC	stop_gained	p.Gln1378*	40.0	6.17	0.0	0.0	0	.	.	rs121913329	3	COSM18862	region_803	0	0.3780487804878049	0.0
+chr5	130540368	CA	C	indel	0.17	LYRM7	3_prime_UTR_variant		.	-1.0	.	.	0	.	.	rs540945101	0	.	.	0	0.5555555555555556	0.0
+chr5	140569104	C	T	snp	0	PCDHB9	missense_variant	p.Thr738Met	12.85	-2.42	.	.	0	.	.	.	None	.	.	0	0.26229508196721313	0.0
+chr5	140732046	C	T	snp	0	PCDHGB1	synonymous_variant	p.Ser740Ser	12.18	-3.19	.	.	0	.	.	.	None	.	.	0	0.1896551724137931	0.0
+chr5	140797629	G	A	snp	0	PCDHGB7	synonymous_variant	p.Val68Val	8.0	-4.48	0.0	.	0	.	.	.	None	.	.	0	0.33884297520661155	0.0
+chr5	150030540	C	G	snp	0	SYNPO	3_prime_UTR_variant		12.43	3.02	.	.	0	.	.	.	None	.	.	0	0.2191780821917808	0.0030581039755351682
+chr5	166802166	A	G	snp	0	TENM2	intron_variant		0.54	-2.62	.	.	0	.	.	.	None	.	.	0	0.22641509433962265	0.0
+chr5	177303206	C	T	snp	0	LOC728554	intron_variant		7.15	1.33	.	.	0	.	.	rs112702445	0	.	.	0	0.3333333333333333	0.0
+chr5	179079205	C	G	snp	0	C5orf60-LOC105377763	intergenic_region		22.5	0.9	.	.	0	.	.	.	None	.	.	0	0.15254237288135594	0.0
+chr5	180670472	C	T	snp	0	RACK1	intron_variant		5.8	-1.31	.	.	0	.	.	.	None	.	.	0	0.34210526315789475	0.0
+chr12	7883234	TAA	T	indel	0	CLEC4C	intron_variant		.	-0.74	.	.	0	.	.	rs80129912	0	.	.	0	0.4	0.0
+chr12	8612336	G	A	snp	0.0	CLEC6A	intron_variant		2.27	-0.07	.	.	0	.	.	rs532208747	0	.	.	0	0.12903225806451613	0.0
+chr12	8989045	A	C	snp	0	A2ML1	intron_variant		0.13	-5.15	.	.	0	.	.	.	None	.	.	0	0.2839506172839506	0.0
+chr12	20803414	A	C	snp	0	PDE3A	missense_variant	p.Asn936His	26.0	5.68	0.0	.	0	.	.	.	None	.	.	0	0.3333333333333333	0.0
+chr12	22623826	C	T	snp	0.0	C2CD5	missense_variant	p.Ala806Thr	29.1	4.98	0.0	.	0	.	.	rs750393334	0	COSM938052,COSM938051	.	0	0.1875	0.0
+chr12	23685068	C	T	snp	0	SOX5	downstream_gene_variant		16.51	2.2	0.0	.	0	.	.	.	None	.	.	0	0.25	0.0
+chr12	25398283	C	A	snp	0.0	KRAS	missense_variant	p.Gly12Val	29.9	5.68	0.0	0.0	1	pathogenic	Carcinoma_of_pancreas|Nevus_sebaceous|Juvenile_myelomonocytic_leukemia|Non-small_cell_lung_cancer|not_provided	rs121913529	3	COSM522,COSM1140134,COSM521,COSM1140133,COSM1135366,COSM520	region_132,region_137,region_136,region_135,region_138,region_122,region_123,region_129	0	0.2465753424657534	0.0
+chr12	31250984	G	A	snp	0	DDX11	intron_variant		0.8	-2.94	.	.	0	.	.	rs2909389	0	.	.	0	0.2857142857142857	0.03225806451612903
+chr12	53589334	C	T	snp	0	ITGB7	intron_variant		3.27	-6.65	.	.	0	.	.	rs754285033	0	.	.	0	0.36363636363636365	0.0
+chr12	56556166	TA	T	indel	0	SMARCC2	3_prime_UTR_variant		.	3.82	0.0	.	0	.	.	.	None	.	.	0	0.10204081632653061	0.0
+chr12	57872993	G	A	snp	0.0	ARHGAP9	missense_variant	p.Arg137Cys	25.2	3.0	0.0	.	0	.	.	rs367755619	0	COSM431582	.	0	0.24	0.0
+chr12	117582871	C	CT	indel	0.29	FBXO21	3_prime_UTR_variant		.	-6.9	.	.	0	.	.	rs562134448,rs36075086	0	.	.	0	0.3333333333333333	0.0
+chr12	123286211	G	A	snp	0.0	CCDC62	missense_variant	p.Glu507Lys	19.66	4.55	.	.	0	.	.	rs569908909	0	COSM268849	.	0	0.3191489361702128	0.0
+chr12	126068542	A	G	snp	0	TMEM132B	splice_region_variant		8.01	3.51	0.0	.	0	.	.	.	None	.	.	0	0.1984732824427481	0.0
+chr12	132621964	A	T	snp	0	DDX51	3_prime_UTR_variant		2.01	0.16	.	.	0	.	.	.	None	.	.	0	0.2	0.0
+chr17	7577537	C	T	snp	0.0	TP53	missense_variant	p.Arg248Gln	34.0	3.65	0.0	0.0	1	pathogenic,other	Li-Fraumeni_syndrome_1|Hereditary_cancer-predisposing_syndrome|Sarcoma|Li-Fraumeni_syndrome_2|Li-Fraumeni_syndrome|not_provided	rs11540652	1	COSM1646857,COSM99602,COSM241995,COSM241996,COSM10662,COSM6549,COSM340105,COSM1646858,COSM340106,COSM99020,COSM241994,COSM11491,COSM340107,COSM1640830,COSM99021	region_241,region_243,region_234,region_235,region_236,region_231,region_232,region_233	1	0.4146341463414634	0.01694915254237288
+chr17	8272612	C	G	snp	0	KRBA2	missense_variant	p.Glu440Gln	22.9	1.79	0.0	.	0	.	.	.	None	.	.	0	0.47560975609756095	0.0
+chr17	12921030	G	A	snp	0	ELAC2	synonymous_variant	p.Ser78Ser	19.13	-8.28	0.0	.	0	.	.	.	None	.	.	0	0.38847117794486213	0.0
+chr17	18564846	CTGA	C	indel	0	ZNF286B	3_prime_UTR_variant		.	0.65	.	.	0	.	.	rs372690861	0	.	.	0	0.11764705882352941	0.043478260869565216
+chr17	20905355	AAT	A	indel	0	USP22	3_prime_UTR_variant		.	-9.21	.	.	0	.	.	.	None	.	.	0	0.25	0.016129032258064516
+chr17	32499401	T	TTTAA	indel	0.95	LOC101927239	intron_variant		.	0.21	.	.	0	.	.	rs10636037,rs397825468	0	.	.	0	0.5454545454545454	0.0
+chr17	60526446	T	C	snp	0	METTL2A	3_prime_UTR_variant		9.03	1.96	.	.	0	.	.	rs1061926	0	.	.	0	0.16326530612244897	0.041666666666666664
+chr17	62130708	G	A	snp	0.0	ERN1	missense_variant	p.Ala659Val	18.52	4.37	0.0	.	0	.	.	rs561780829	0	.	.	0	0.4489795918367347	0.0
+chr17	73101955	A	G	snp	0	SLC16A5	intron_variant		8.35	1.5	0.0	.	0	.	.	.	None	.	.	0	0.56	0.0
+chr17	78367642	G	A	snp	0	RNF213	3_prime_UTR_variant		6.23	-3.1	.	.	0	.	.	.	None	.	.	0	0.37037037037037035	0.0
