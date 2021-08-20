@@ -31,12 +31,13 @@ This workflow was produced both on the Galaxy platform as well as a Linux Pipeli
 - @Kauthar
 - @VioletNwoke
 - @AmaraA
-- **@Amarachukwu - Gemini annotate(CGI) and Gemini query**
+- @Amarachukwu - Gemini annotate(CGI) and Gemini query
 - @Mallika
 - @Olamide 
 - @Marvellous
 - @NadaaHussienn
 - @Christabel
+- @Juwon
 
 2. Linux Workflow
 - @Praise 
