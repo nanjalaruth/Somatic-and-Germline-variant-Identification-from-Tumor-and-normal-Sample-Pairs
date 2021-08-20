@@ -362,7 +362,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @Olamide - Read Trimming and Filtering
 - @NadaaHussienn - Quality Control and Check
 - @Christabel
-- @Marvellous  
+- @Marvellous - [Workflow 1](https://usegalaxy.eu/u/o.m.o./w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs) and [Workflow 2](https://usegalaxy.eu/u/o.m.o./w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs-2) 
 
 
 2. Linux Workflow
