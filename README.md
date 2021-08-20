@@ -71,7 +71,7 @@ The quality reads did not change much as the datasets were already of high quali
 
 ##Left-align reads around indels
 
-The first Step in this is running the BamLeftAlign tool from the Tools set available on Galaxy. Then we have chosen the source for the reference genome as Locally cached and selected the filtered and dedicated reads datasets from the normal and the tumor tissue data which were the outputs of RmDup. Them we used Human: hg19 aa the genome reference  and set the maximum number of iterations as 5 , keeping all other settings as default and finally this will generate two new datasets, that us , one for each of the normal and tumor data
+The first Step in this is running the BamLeftAlign tool from the Tools set available on Galaxy. Then we have chosen the source for the reference genome as Locally cached and selected the filtered and dedicated reads datasets from the normal and the tumor tissue data which were the outputs of RmDup. Them we used Human: hg19 aa the genome reference  and set the maximum number of iterations as 5 , keeping all other settings as default and finally this will generate two new datasets,that is, one for each of the normal and tumor data
 
 ##Recalibrate read mapping qualities
 
