@@ -59,7 +59,7 @@ The aim of including extra annotations to the GEMINI-generated gene report (that
  
 By simply using the Join two files tools on Galaxy, this task was be achieved. After which, irrelevant columns were removed by specifying the columns that are needed. Three step wise process were involved here: One, we pulled the annotations found in Uniprot cancer genes dataset; second, we used the output of the last Join operation, annotated the newly formed gene-centered report with the CGI biomarkers datasets; and three, we used the output of the second Join operation, add the Gene Summaries dataset. Lastly, we ran Column arrange by header name to rearrange the fully-annotated gene-centered report and eliminate unspecified columns.
 
-The last output of the Join operation was selected in the “file to arrange” section. The columns to be specified by name are: gene, chrom, synonym, hgnc_id, entrez_id, rvis_pct, is_TS, in_cgi_biomarkers, clinvar_gene_phenotype, gene_civic_url, and description. The result gotten was a tabular gene report which was easy to understand and interpret.
+The last output of the Join operation was selected in the “file to arrange” section. The columns to be specified by name are: gene, chrom, synonym, hgnc_id, entrez_id, rvis_pct, is_TS, in_cgi_biomarkers, clinvar_gene_phenotype, gene_civic_url, and description. The result gotten was a tabular gene report, which was easy to understand and interpret.
  
  
 # Section Two: `Linux Pipeline`
