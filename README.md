@@ -80,8 +80,9 @@ The first Step in this is running the BamLeftAlign tool from the Tools set avail
 #Recalibrate read mapping qualities
 
 The next step after Left aligning the reads around indels is  Recalibrating the read mapping qualities. 
-RECALIBRATE READ QUALITY SCORES:
-•	The first Step in Recalibrating read mapping qualities is running CalMD tool from Galaxy tool set. Firstly we have selected the left-aligned datasets from the normal and the tumor tissue data; the outputs of BamLeftAlign tool as the input for the BAM file to recalculate. Them we chose the source of reference genome as Use a built in genome as the required hg 19 reference genome was already in built in the Galaxy version we were using. We chose Advanced options as the choice for Additional options and we selected 50 as the Coefficient to cap the mapping quality of poorly mapped reads. And finally this step would produce two new datasets, that is one for each of the normal and tumor data.
+
+•RECALIBRATE READ QUALITY SCORES :
+The first Step in Recalibrating read mapping qualities is running CalMD tool from Galaxy tool set. Firstly we have selected the left-aligned datasets from the normal and the tumor tissue data; the outputs of BamLeftAlign tool as the input for the BAM file to recalculate. Them we chose the source of reference genome as Use a built in genome as the required hg 19 reference genome was already in built in the Galaxy version we were using. We chose Advanced options as the choice for Additional options and we selected 50 as the Coefficient to cap the mapping quality of poorly mapped reads. And finally this step would produce two new datasets, that is one for each of the normal and tumor data.
 
 #Refilter reads based on mapping quality
 
