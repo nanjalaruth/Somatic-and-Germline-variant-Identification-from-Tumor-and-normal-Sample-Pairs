@@ -15,10 +15,60 @@ This tutorial was reproduced on the Galaxy platform and with Linux Pipeline
 
  
  
+##  Quality Control & Check:
  
+•	FastQC:  is a quality control tool for high throughput sequence data that gives a summary report about the sequence.
+•	MultiQC: A modular tool to aggregate results from bioinformatics analyses across many samples into a single report.
+
+The MultiQC Output & Report:
+For the quality control analysis, the following figures show that the chosen dataset is of high quality for both Normal R1 & R2 datasets and both Tumor R1 & R2 datasets even the tumor ones are of poorer quality than the normal ones:
+o   All nucleotides have high-quality scores, (the forward and reverse reads of normal and tumor patient’s tissues), as they all are present in high/good quality region.
+	
+![Graphical Abstract](https://drive.google.com/drive/u/0/folders/1c5oKtxt0y1W1rYcNCth8DWJbi6HLt6Lh)
+	
+ o	Good quality score distribution as the mean is high with a sharp, distinct peak.
+	
+![Graphical Abstract](https://www.facebook.com/photo?fbid=10225646820218584&set=pcb.10225646822138632)
+	
+o	The actual mean of the GC% content is lower than the theoretical one and that is a non-normal distribution which may indicate some contamination; however, this peculiar bimodal distribution is considered to be a hallmark of the captured method as using Agilent’s SureSelect V5 technology for exome enrichment.
+	
+![Graphical Abstract](https://www.facebook.com/photo?fbid=10225646820458590&set=pcb.10225646822138632)
+	
+o	The N content is zero, thus not indicating any bad base detection.
+	
+![Graphical Abstract](https://www.facebook.com/photo?fbid=10225646821138607&set=pcb.10225646822138632)
+	
+o	Sequence duplication level is good as well with almost no PCR biases when library was prepared as there is no over-amplified fragment.
+	
+![Graphical Abstract](https://www.facebook.com/photo?fbid=10225646820938602&set=pcb.10225646822138632)
+	
+o	There is a little presence of adaptors in the sequence.
+	
+![Graphical Abstract](https://www.facebook.com/photo/?fbid=10225646821338612&set=pcb.10225646822138632)
+	
  
+Trimming The Sequence for Better Quality:
+•	Trimmomatic: is a fast, multithreaded command line tool that can be used to trim and crop low quality reads and removes the present adaptors in the reads to improve the quality of these processing datasets.
+
+Although the raw reads used are of relatively good overall quality already, we applied read trimming and filtering to see if we could improve things still a bit, but also to demonstrate the general concept. Since we removed all the unpaired reads datasets for both R1 and R2 in each of normal and tumor tissue reads datasets as all these reads were empty. 
+
+The MultiQC Output & Report after Trimming:
+	
+The quality reads did not change much as the datasets were already of high quality although a small fraction of adapter is successfully removed as shown in the following report:
+	
+![Graphical Abstract](https://www.facebook.com/photo/?fbid=10225646826658745&set=pcb.10225646828378788)
+	
+![Graphical Abstract](https://www.facebook.com/photo?fbid=10225646826818749&set=pcb.10225646828378788)
+	
+![Graphical Abstract](https://www.facebook.com/photo?fbid=10225646827098756&set=pcb.10225646828378788)
+	
+![Graphical Abstract](https://www.facebook.com/photo?fbid=10225646827498766&set=pcb.10225646828378788)
+	
+![Graphical Abstract](https://www.facebook.com/photo?fbid=10225646827698771&set=pcb.10225646828378788)
+	
+![Graphical Abstract](https://www.facebook.com/photo/?fbid=10225646828058780&set=pcb.10225646828378788)
  
- 
+
  
 ## Adding genetic and clinical evidence_based annotation : Creating a GEMINI database for variants 
  
@@ -72,7 +122,8 @@ The following columns were selected
 *	“ref”
 *	“alt”
  
-	“Additional columns (comma-separated)”: *gene, aa_change, rs_ids, hs_qvalue, cosmic_ids*. These columns are gotten from the variants table of the GEMINI database.
+*	“Additional columns (comma-separated)”: *gene, aa_change, rs_ids, hs_qvalue, cosmic_ids*
+ These columns are gotten from the variants table of the GEMINI database.
 
 2.	This second step has the same settings as the above step except for:
 
@@ -146,7 +197,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @Kauthar
 - @VioletNwoke
 - @AmaraA
-- @Amarachukwu -GEMINI query
+- @Amarachukwu -Gemini query
 - @Mallika
 - @Olamide ``
 - @NadaaHussienn
