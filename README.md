@@ -356,6 +356,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @NadaaHussienn - Quality Control and Check [Link to Galaxy Workflow](https://usegalaxy.eu/u/nadahussien/w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs-3)
 - @Christabel- [link to galaxy workflow](https://usegalaxy.eu/u/christabelmn1/w/somatic-and-germline-variants-and-gene-mutation-2)
 - @Marvellous - [Workflow 1](https://usegalaxy.eu/u/marvellous_oyebanjo/w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs) and [Workflow 2](https://usegalaxy.eu/u/marvellous_oyebanjo/w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs-2) 
+- @juwon - Introduction
 
 
 2. Linux Workflow
