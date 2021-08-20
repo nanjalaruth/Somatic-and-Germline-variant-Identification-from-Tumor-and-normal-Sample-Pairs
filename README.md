@@ -106,29 +106,28 @@ The quality reads did not change much as the datasets were already of high quali
 	
 ![Quality Report](https://scontent.fcai20-3.fna.fbcdn.net/v/t39.30808-6/239939775_10225646828178783_4978182995878171958_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_eui2=AeEbSPFnKNZSQ1lwLKiEAJN7PU9sMEthmiU9T2wwS2GaJaw4KG3CdEHZIDmkt9PEA10&_nc_ohc=LCgTxenAqUQAX8ba8w4&_nc_ht=scontent.fcai20-3.fna&oh=fe03893345cfc2a4f0382c2c40544e91&oe=6125378E)
  
+	
+## Read Mapping
+Once the sequence reads have been filtered and trimmed, read mapping or alignment is the next step in the bioinformatic pipeline. Read mapping is the process of aligning a set of reads to a reference genome to determine their specific genomic location. Several tools are available for read mapping but BWA-MEM (Galaxy Version 0.7.17.2) was used for our analysis as it is faster, accurate and supports paired-end reads. Read mapping was performed independently for the normal and tumor tissue using thesame parameters except otherwise stated.
 
+Paramaters
+- Locally cached human hg19 reference genome, Paired end reads, Forward and reverse trimmed reads (output of trimmomatic), Set read groups (SAM/BAM specification), auto-assign (no), Read Group Identifier (231335 for normal tissue and 231336 for tumor tissue), Read group sample name (normal for normal tissue and tumor for tumor tissue), 
+- For parameters not listed, default setting was used.	
+	
 ## Mapped Read Postprocessing
-After successfully mapping our sample sequences for both normal and tumor data,we proceeded to ensure only high quality and unambiguous read mappings move forward in our variant analysis pipeline.
-### Duplicate Reads Removal
-Tool: ![image](https://user-images.githubusercontent.com/87745988/130272395-eb2bf185-b766-4088-af8d-a91ae3c6c784.png)
 
-
-#### Significance
-RmDup is a tool that identifies PCR duplicates by identifying pairs of reads where multiple reads align to the same exact start position in the genome. PCR duplicates arise from multiple PCR products from the same template binding on the flow cell.These are usually removed because they can lead to false positives<br>The read pair with the highest mapping quality score is kept and the other pairs are discarded.<br>It is important to note that this tool does not work for unpaired reads(in paired end mode) or reads that would pair where each maps to different chromosomes.<br>Note: It does not work for unpaired reads.<br>We used filtered reads datasets(BAM file) from the normal and the tumor tissue data- *outputs of Filter BAM datasets on a variety of attributes* .<br>We run RmDup on the following parameters:![](https://i.imgur.com/b2IeqaC.png)and ![](https://i.imgur.com/3m1NMRc.png)The result was two new datasets in BAM format.The duplicate rate for both sets was well below 10% which is considered good.The tool standard error reflected the results below of unmatched pairs on chr5 and chr12 that otherwise were not included in the output data!
-
-
-#### Left-align reads around indels
+#Left-align reads around indels
 
 The first Step in this is running the BamLeftAlign tool from the Tools set available on Galaxy. Then we have chosen the source for the reference genome as Locally cached and selected the filtered and dedicated reads datasets from the normal and the tumor tissue data which were the outputs of RmDup. Then we used Human: hg19 aa the genome reference  and set the maximum number of iterations as 5, keeping all other settings as default and finally this will generate two new datasets, that is,one for each of the normal and tumor data.
 
-#### Recalibrate read mapping qualities
+#Recalibrate read mapping qualities
 
 The next step after Left aligning the reads around indels is  Recalibrating the read mapping qualities. 
 
 •RECALIBRATE READ QUALITY SCORES :
 The first Step in Recalibrating read mapping qualities is running CalMD tool from Galaxy tool set. Firstly we have selected the left-aligned datasets from the normal and the tumor tissue data; the outputs of BamLeftAlign tool as the input for the BAM file to recalculate. Them we chose the source of reference genome as Use a built in genome as the required hg 19 reference genome was already in built in the Galaxy version we were using. We chose Advanced options as the choice for Additional options and we selected 50 as the Coefficient to cap the mapping quality of poorly mapped reads. And finally this step would produce two new datasets, that is one for each of the normal and tumor data.
 
-#### Refilter reads based on mapping quality
+#Refilter reads based on mapping quality
 
 Eliminating reads with undefined mapping quality 
 We ran Filter BAM datasets on a variety of attributes tool using some parameters.          The  recalibrated datasets from the normal and the tumor tissue data which were the outputs of CalMD were selected as the BAM datasets to filter. Then we applied certain conditions as the options , in Filter, we selecte the MapQuality as the BAM property to Filter. Then set the value of less than or equal to 254 (<=254) as the Filter on read mapping quality (phred scale).
@@ -264,12 +263,12 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 ##  List of team members according to the environment used:
 
 1. Galaxy Workflow:
-- @Rachael -https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1
+- @Rachael 
 - @Mercy
 - @Orinda
-- @Heshica -https://usegalaxy.eu/u/heshica_battina_chowdary/w/normal-and-tumor-analysisheshica-genomics-2a
+- @Heshica 
 - @Kauthar
-- @VioletNwoke
+- @VioletNwoke - Read mapping [Link to galaxy workflow] (https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
 - @AmaraA
 - @Amarachukwu -Gemini query
 - @Mallika
