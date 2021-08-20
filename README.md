@@ -114,37 +114,14 @@ Paramaters
 - Locally cached human hg19 reference genome, Paired end reads, Forward and reverse trimmed reads (output of trimmomatic), Set read groups (SAM/BAM specification), auto-assign (no), Read Group Identifier (231335 for normal tissue and 231336 for tumor tissue), Read group sample name (normal for normal tissue and tumor for tumor tissue),
 - For parameters not listed, default setting was used.
 
-## Mapped reads postprocessing
-	
-### Mapped reads filtering
-The tool used was a BAM tools filter called: ![](https://i.imgur.com/xkurc1C.png) available on Galaxy. It produces newly filtered BAM datasets and only retains reads mapped to the reference successfully and have a minimal mapping quality of 1 and for which the mate read has also been mapped.
-The quality of the output data is controlled by a series ofconditions and filters.
+## Mapped Read Postprocessing
 
-The BAM tools filter was run with these parameters:
-The BAM datasets we filtered were:
-1. The output of Map with BWA (mapped reads in BAM format)![](https://i.imgur.com/AWEyljF.png)
-2. The output of Map with BWA (mapped reads in BAM format)![](https://i.imgur.com/VmShNr5.png)
-
-The quality of the output data is controlled by a series of conditions and filters.
-The Conditions set were as below:
-The first filter involved selecting a BAM property to filter on which was mapQuality+ the filter on read mapping quality (on a phred scale):>=1 
-The mapping quality scale quantifies the probability that a read was misplaced.
-
-The second filter involved selecting another BAM property to filter,for which we selected:isMapped(for mapped reads)+Selected mapped reads>Yes
-
-The third filter involved selecting yet another BAM property to filter for which we selected isMateMapped (for paired-end reads with long inserts)+a confirmation to select mapped reads>yes
-
-The last condition set involving opting to set rules for which we selected >No ![](https://i.imgur.com/p9NcqM1.png)
-Then we ran the job. This was done for both the normal and tumor tissue data thus resulting in two datasets in the output results
-
-	
-## Duplicate Reads Removal
-Tool: ![](https://i.imgur.com/OPq6wgU.png)
+### Duplicate Reads Removal
+Tool:![](https://i.imgur.com/OPq6wgU.png)
 
 #### Significance
-RmDup is a tool that identifies PCR duplicates by identifying pairs of reads where multiple reads align to the same exact start position in the genome. PCR duplicates arise from multiple PCR products from the same template binding on the flow cell.These are usually removed because they can lead to false positives<br>The read pair with the highest mapping quality score is kept and the other pairs are discarded.<br>It is important to note that this tool does not work for unpaired reads(in paired end mode) or reads that would pair where each maps to different chromosomes.<br>We used filtered reads datasets(BAM file) from the normal and the tumor tissue data- *outputs of Filter BAM datasets on a variety of attributes* .
-We run RmDup on the following parameters:![](https://i.imgur.com/b2IeqaC.png)and ![](https://i.imgur.com/3m1NMRc.png)The result was two new datasets in BAM format.The duplicate rate for both sets was well below 10% which is considered good.The tool standard error reflected the results below of unmatched pairs on chr5 and chr12 that otherwise were not included in the output data.<br>
-![](https://i.imgur.com/PCxnoWE.png)
+RmDup is a tool that identifies PCR duplicates by identifying pairs of reads where multiple reads align to the same exact start position in the genome. PCR duplicates arise from multiple PCR products from the same template binding on the flow cell.These are usually removed because they can lead to false positives<br>The read pair with the highest mapping quality score is kept and the other pairs are discarded.<br>It is important to note that this tool does not work for unpaired reads(in paired end mode) or reads that would pair where each maps to different chromosomes.<br>Note: It does not work for unpaired reads.<br>We used filtered reads datasets(BAM file) from the normal and the tumor tissue data- *outputs of Filter BAM datasets on a variety of attributes* .<br>We run RmDup on the following parameters:![](https://i.imgur.com/b2IeqaC.png)and ![](https://i.imgur.com/3m1NMRc.png)The result was two new datasets in BAM format.The duplicate rate for both sets was well below 10% which is considered good.The tool standard error reflected the results below of unmatched pairs on chr5 and chr12 that otherwise were not included in the output data!
+
 	
 
 #Left-align reads around indels
@@ -161,7 +138,18 @@ The first Step in Recalibrating read mapping qualities is running CalMD tool fro
 #Refilter reads based on mapping quality
 
 Eliminating reads with undefined mapping quality
-We ran Filter BAM datasets on a variety of attributes tool using some parameters.          The  recalibrated datasets from the normal and the tumor tissue data which were the outputs of CalMD were selected as the BAM datasets to filter. Then we applied certain conditions as the options , in Filter, we selecte the MapQuality as the BAM property to Filter. Then set the value of less than or equal to 254 (<=254) as the Filter on read mapping quality (phred scale).
+We ran Filter BAM datasets on a variety of attributes tool using some parameters.          The  recalibrated datasets from the normal and the tumor tissue data which were the outputs of CalMD were selected as the BAM datasets to filter. Then we applied certain conditions as the options , in Filter, we selected the MapQuality as the BAM property to Filter. Then set the value of less than or equal to 254 (<=254) as the Filter on read mapping quality (phred scale).
+
+## Variant Calling and Classification using VarScan Somatic
+
+The purpose of this step is to use the tool "VarScan somatic" to detect variant alleles in tumor or normal sample pairs, call sample genotypes at variant sites, as well as classify variants into germline, somatic and LOH event variants using solid classical statistics even in the presence of non-pure samples like those obtained from biopsies.
+
+After generating high quality set of mapped read pairs, we ran the "VarScan Somatic" with some parameters using the Human: h19 genome as our reference genome.
+The mapped and filtered CalMD outputs of the normal and tumor tissue datasets were aligned to be read, and the estimated purity content for the normal and tumor samples were set to 1 and 0.5 respectively. Then we customized the settings for variant calling and set the "Minimum Base Quality" to 28. This was done to increase the base quality of our sequence data without throwing away a significant portion of the data. 
+
+The "Minimum Mapping Quality" was then assigned to 1, in order to filter our sequence reads with a mapping quality of at least one as CalMD might have lowered some mapping qualities to zero.
+
+We set the "Settings for Posterior Variant Filtering" as default values as well as leaving other settings to their default values before executing. The result of this was an oufput file in a VCF format.
 
 
 ## Adding genetic and clinical evidence_based annotation : Creating a GEMINI database for variants
@@ -252,7 +240,7 @@ The aim of including extra annotations to the GEMINI-generated gene report (that
 
 By simply using the Join two files tools on Galaxy, this task was  achieved. After which, irrelevant columns were removed by specifying the columns that are needed. Three step wise process were involved here: One, we pulled the annotations found in Uniprot cancer genes dataset; second, we used the output of the last Join operation, annotated the newly formed gene-centered report with the CGI biomarkers datasets; and three, we used the output of the second Join operation, add the Gene Summaries dataset. Lastly, we ran Column arrange by header name to rearrange the fully-annotated gene-centered report and eliminate unspecified columns.
 
-The last output of the Join operation was selected in the “file to arrange” section. The columns to be specified by name are: gene, chrom, synonym, hgnc_id, entrez_id, rvis_pct, is_TS, in_cgi_biomarkers, clinvar_gene_phenotype, gene_civic_url, and description. The result gotten was a [tabular gene report](https://github.com/Fredrick-Kakembo/Somatic-and-Germline-variant-Identification-from-Tumor-and-normal-Sample-Pairs/blob/main/Galaxy54-%5BColumn_arrange_on_data_53%5D%20(1).tabular), which was easy to understand and interpret.
+The last output of the Join operation was selected in the “file to arrange” section. The columns to be specified by name are: gene, chrom, synonym, hgnc_id, entrez_id, rvis_pct, is_TS, in_cgi_biomarkers, clinvar_gene_phenotype, gene_civic_url, and description. The result gotten was a tabular gene report which was easy to understand and interpret.
 
 
 # Section Two: `Linux Pipeline`
@@ -346,19 +334,19 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 ##  List of team members according to the environment used:
 
 1. Galaxy Workflow:
-- @Rachael - Adding genetic and clinical evidence-based annotations [https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1]
+- @Rachael
 - @Mercy
 - @Orinda
 - @Heshica
 - @Kauthar
-- @VioletNwoke - Read mapping [Link to galaxy workflow](https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
+- @VioletNwoke - Read mapping [Link to galaxy workflow] (https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
 - @AmaraA
 - @Amarachukwu -Gemini query
 - @Mallika
 - @Olamide - Read Trimming and Filtering
 - @NadaaHussienn - Quality Control and Check
 - @Christabel
-- @Marvellous - [Workflow 1](https://usegalaxy.eu/u/o.m.o./w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs) and [Workflow 2](https://usegalaxy.eu/u/o.m.o./w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs-2) 
+- @Marvellous  
 
 
 2. Linux Workflow
