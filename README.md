@@ -89,7 +89,7 @@ The process is repeated for the forward read FASTQ file (r1) and reverse read FA
 
 
 
-The MultiQC Output & Report after Trimming:
+° The MultiQC Output & Report after Trimming:
 
 The quality reads did not change much as the datasets were already of high quality although a small fraction of adapter is successfully removed as shown in the following report:
 
