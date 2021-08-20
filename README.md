@@ -24,7 +24,7 @@ The MultiQC Output & Report:
 For the quality control analysis, the following figures show that the chosen dataset is of high quality for both Normal R1 & R2 datasets and both Tumor R1 & R2 datasets even the tumor ones are of poorer quality than the normal ones:
 o   All nucleotides have high-quality scores, (the forward and reverse reads of normal and tumor patient’s tissues), as they all are present in high/good quality region.
 	
-![Graphical Abstract](https://drive.google.com/drive/u/0/folders/1c5oKtxt0y1W1rYcNCth8DWJbi6HLt6Lh)
+![Graphical Abstract](https://scontent.fcai20-3.fna.fbcdn.net/v/t39.30808-6/239887479_10225646820098581_7852584000625137608_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=730e14&_nc_eui2=AeEGg5POsRQ22z30bSKJKOHMNyXKaVeIx-Q3JcppV4jH5H7955fLdsp5_S5xl6vVh4A&_nc_ohc=qsVI3WWfM6MAX-9V1fz&_nc_ht=scontent.fcai20-3.fna&oh=0f87104f5f97008322df582eea23119f&oe=61249517)
 	
  o	Good quality score distribution as the mean is high with a sharp, distinct peak.
 	
