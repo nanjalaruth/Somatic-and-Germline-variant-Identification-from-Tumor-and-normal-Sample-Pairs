@@ -13,6 +13,39 @@ This workflow was produced both on the Galaxy platform as well as a Linux Pipeli
 
 <Lets add the galaxy sections here>
 
+## DATASET 
+
+## SAMPLE PREPROCESSING 
+  ### Quality Check 
+
+  ### Read Trimming and Filtering 
+
+  ### Read Mapping 
+
+## MAPPED READ POSTPROCESSING 
+  ### Mapped Reads Filtering 
+
+  ### Duplicate Reads Removal 
+
+  ### Left-align Reads 
+
+  ### Recalibrate Read Mapping 
+
+  ### Re-filter Read Mapping 
+
+## VARIANTS CALLING AND CLASSIFICATION 
+
+## VARIANTS ANNOTATION AND REPORTING 
+  ### Annotation Files 
+
+  ### Adding Annotation To Called Variants With SnpEff 
+
+  ### Annotation with Gemini 
+
+  ### Adding Additional Annotation To The Gene-centered Report 
+
+  ### Discussion and Conclusion Of Final Results Generated 
+
  ---
  
 # Section Two: `Linux Pipeline`
