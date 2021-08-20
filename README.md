@@ -11,10 +11,11 @@ This workflow was produced both on the Galaxy platform as well as a Linux Pipeli
 
 # Section one:  `GALAXY WORKFLOW`
 
+<Lets add the galaxy sections here>
 
-
+  
 # Section Two: `Linux Pipeline`
-
+<Lets add the Linux Section here>
 
 
 --- 
