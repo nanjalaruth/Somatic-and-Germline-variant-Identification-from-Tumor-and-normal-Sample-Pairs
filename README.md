@@ -72,6 +72,25 @@ The quality reads did not change much as the datasets were already of high quali
 ![Quality Report](https://scontent.fcai20-3.fna.fbcdn.net/v/t39.30808-6/239939775_10225646828178783_4978182995878171958_n.jpg?_nc_cat=102&ccb=1-5&_nc_sid=730e14&_nc_eui2=AeEbSPFnKNZSQ1lwLKiEAJN7PU9sMEthmiU9T2wwS2GaJaw4KG3CdEHZIDmkt9PEA10&_nc_ohc=LCgTxenAqUQAX8ba8w4&_nc_ht=scontent.fcai20-3.fna&oh=fe03893345cfc2a4f0382c2c40544e91&oe=6125378E)
  
 
+## Mapped Read Postprocessing
+
+#Left-align reads around indels
+
+The first Step in this is running the BamLeftAlign tool from the Tools set available on Galaxy. Then we have chosen the source for the reference genome as Locally cached and selected the filtered and dedicated reads datasets from the normal and the tumor tissue data which were the outputs of RmDup. Then we used Human: hg19 aa the genome reference  and set the maximum number of iterations as 5, keeping all other settings as default and finally this will generate two new datasets, that is,one for each of the normal and tumor data.
+
+#Recalibrate read mapping qualities
+The next step after Left aligning the reads around indels is  Recalibrating the read mapping qualities. 
+RECALIBRATE READ QUALITY SCORES:
+•	The first Step in Recalibrating read mapping qualities is running CalMD tool from Galaxy tool set. Firstly we have selected the left-aligned datasets from the normal and the tumor tissue data; the outputs of BamLeftAlign tool as the input for the BAM file to recalculate. Them we chose the source of reference genome as Use a built in genome as the required hg 19 reference genome was already in built in the Galaxy version we were using. We chose Advanced options as the choice for Additional options and we selected 50 as the Coefficient to cap the mapping quality of poorly mapped reads. And finally this step would produce two new datasets, that is one for each of the normal and tumor data.
+
+#Refilter reads based on mapping quality
+Eliminating reads with undefined mapping quality 
+We ran Filter BAM datasets on a variety of attributes tool using some parameters.          The  recalibrated datasets from the normal and the tumor tissue data which were the outputs of CalMD were selected as the BAM datasets to filter. Then we applied certain conditions as the options , in Filter, we selecte the MapQuality as the BAM property to Filter. Then set the value of less than or equal to 254 (<=254) as the Filter on read mapping quality (phred scale).
+
+
+
+
+
  
 ## Adding genetic and clinical evidence_based annotation : Creating a GEMINI database for variants 
  
