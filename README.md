@@ -49,7 +49,7 @@ Links to CIVic: the output of the last Gemini annoate for cancerhotspots was ann
  
  
  
-## Adding additional Annoattaion to the Gene-Centered Report
+## Adding additional Annotation to the Gene-Centered Report
 The aim of including extra annotations to the GEMINI-generated gene report (that is, the output of the last GEMINI query) is to make interpreting the final output easier. While GEMINI-annotate allowed us to add specific columns to the table of the database we created, it does not allow us to include additional annotations into the tabular gene report.
  
 By simply using the Join two files tools on Galaxy, this task can be achieved. After which, irrelevant columns are removed by specifying the columns that are needed. Three step wise process are involved here: One, pull the annotations found in Uniprot cancer genes dataset; second, using the output of the last Join operation, annotate the newly formed gene-centered report with the CGI biomarkers datasets; and three, using the output of the second Join operation, add the Gene Summaries dataset. Lastly, run Column arrange by header name to rearrange the fully-annotated gene-centered report and eliminate unspecified columns.
