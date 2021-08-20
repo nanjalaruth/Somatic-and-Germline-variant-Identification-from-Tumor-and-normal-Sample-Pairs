@@ -25,6 +25,7 @@ Once the files are uploaded in the history, click on the pencil icon to edit its
 ##  Quality Control & Check:
  
 •	FastQC:  is a quality control tool for high throughput sequence data that gives a summary report about the sequence.
+
 •	MultiQC: A modular tool to aggregate results from bioinformatics analyses across many samples into a single report.
 
 
