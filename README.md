@@ -67,7 +67,7 @@ The next process after quality control is Trimming and Filtering. This process f
 ° Input data - The forward read FASTQ file (r1) and the reverse read FASTQ file (r2) of the normal tissue were run concurrently as paired-end by performing initial ILLUMINACLIP step.
 
 ° [Parameters 1](https://github.com/Fredrick-Kakembo/Somatic-and-Germline-variant-Identification-from-Tumor-and-normal-Sample-Pairs/blob/Trimmomatic-Parameters/IMG_20210820_230836.jpg)
-
+° [Parameters 2](https://github.com/Fredrick-Kakembo/Somatic-and-Germline-variant-Identification-from-Tumor-and-normal-Sample-Pairs/blob/Trimmomatic-Parameters/IMG_20210820_231013.jpg)
 
 ° Output data - Trimmed forward and reverse reads for each normal and tumor tissue. 
               - Orphaned forward and reverse reads for each normal and tumor tissue which the corresponding mate got dropped because of insufficient length after trimming. These datasets are empty and therefore deleted. 
