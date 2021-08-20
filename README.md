@@ -2,6 +2,8 @@
 
 ## Our team produced this tutorial on both Linux environment and on Galaxy
 
+![Graphical Abstract](Graphic_Abstract-Genomics-Two-A.png)
+
 ##  List of team members according to the environment used:
 
 1. Galaxy Workflow:
