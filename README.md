@@ -63,7 +63,7 @@ o	There is a little presence of adaptors in the sequence.
 The next process after quality control is Trimming and Filtering. This process further helps to trim and filter raw reads to give a more improved quality.
 ° Tool - TRIMMOMATIC (Galaxy Version 0. 38. 0) is a fast, multithreaded command line tool that can be used to trim and crop low quality reads and remove the present adaptors in the reads to improve the quality of these processing datasets.
 
-° Input data - The forward read FASTQ file (r1) and the reverse read FASTQ file (r2) of the normal tissue is run concurrently as paired-end by performing initial ILLUMINACLIP step. 
+° Input data - The forward read FASTQ file (r1) and the reverse read FASTQ file (r2) of the normal tissue are run concurrently as a paired-end by performing initial ILLUMINACLIP step. 
 
 ° Process - Under the ILLUMINACLIP step, the adapter is set to standard and "TruSeq3 (paired-ended, for MiSeq and HiSeq)" set as adapter sequence to use. 
 The maximum mismatch count is set at "2". 
@@ -108,11 +108,6 @@ The quality reads did not change much as the datasets were already of high quali
  
 
 ## Mapped Read Postprocessing
-#Duplicate Reads Removal	
-Tool:![](https://i.imgur.com/NS3WOzu.png)
-
-#### Significance
-RmDup identifies PCR duplicates by identifying pairs of reads where multiple reads align to the same exact start position in the genome. PCR duplicates arise from multiple PCR products from the same template binding on the flow cell.These are usually removed because they can lead to false positives<br>The read pair with the highest mapping quality score is kept and the other pairs are discarded.<br>It is important to note that this tool does not work for unpaired reads(in paired end mode) or reads that would pair where each maps to different chromosomes.<br>Note: It does not work for unpaired reads.<br>We used filtered reads datasets(BAM file) from the normal and the tumor tissue data- *outputs of Filter BAM datasets on a variety of attributes* .<br>We run![](https://i.imgur.com/8sq3fOT.png)on the following parameters:![](https://i.imgur.com/b2IeqaC.png)and ![](https://i.imgur.com/3m1NMRc.png)The result was two new datasets in BAM format.The duplicate rate for both sets was well below 10% which is considered good.The tool standard error reflected the results below of unmatched pairs on chr5 and chr12 that otherwise were not included in the output data.
 
 #Left-align reads around indels
 
@@ -270,7 +265,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @AmaraA
 - @Amarachukwu -Gemini query
 - @Mallika
-- @Olamide - Read Trimming and Filtering 
+- @Olamide - Read Trimming and Filtering https://usegalaxy.eu/u/olamide21/w/workflow-constructed-from-history-genomics-2a-task-olamide
 - @NadaaHussienn - Quality Control and Check
 - @Christabel
 - @Marvellous  
