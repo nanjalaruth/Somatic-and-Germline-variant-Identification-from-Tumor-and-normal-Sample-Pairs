@@ -350,7 +350,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @Kauthar
 - @VioletNwoke - Read mapping [Link to galaxy workflow](https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
 - @AmaraA
-- @Amarachukwu -Gemini query [Link to Galaxy workflow] (https://usegalaxy.eu/u/amara_chike/w/somatic-variant-tutorial-genomics-2-a-1) 
+- @Amarachukwu -Gemini query [Link to Galaxy workflow](https://usegalaxy.eu/u/amara_chike/w/somatic-variant-tutorial-genomics-2-a-1) 
 - @Mallika
 - @Olamide - Read Trimming and Filtering [Link to Galaxy Workflow](https://usegalaxy.eu/u/olamide21/w/identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs) 
 - @NadaaHussienn - Quality Control and Check [Link to Galaxy Workflow](https://usegalaxy.eu/u/nadahussien/w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs-3)
