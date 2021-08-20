@@ -108,6 +108,7 @@ The quality reads did not change much as the datasets were already of high quali
  
 
 ## Mapped Read Postprocessing
+After successfully mapping our sample sequences for both normal and tumor data,we proceeded to ensure only high quality and unambiguous read mappings move forward in our variant analysis pipeline.
 ### Duplicate Reads Removal
 Tool: ![image](https://user-images.githubusercontent.com/87745988/130272395-eb2bf185-b766-4088-af8d-a91ae3c6c784.png)
 
