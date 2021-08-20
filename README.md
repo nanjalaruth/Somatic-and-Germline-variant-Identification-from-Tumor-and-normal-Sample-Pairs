@@ -146,26 +146,26 @@ This was done for both the normal and tumor tissue data thus resulting in two da
 Tool: ![](https://i.imgur.com/OPq6wgU.png)
 
 #### Significance
-RmDup is a tool that identifies PCR duplicates by identifying pairs of reads where multiple reads align to the same exact start position in the genome. PCR duplicates arise from multiple PCR products from the same template binding on the flow cell.These are usually removed because they can lead to false positives<br>The read pair with the highest mapping quality score is kept and the other pairs are discarded.<br>It is important to note that this tool does not work for unpaired reads(in paired end mode) or reads that would pair where each maps to different chromosomes.<br>We used filtered reads datasets(BAM file) from the normal and the tumor tissue data- *outputs of Filter BAM datasets on a variety of attributes* .
-We run RmDup on the following parameters:![](https://i.imgur.com/b2IeqaC.png)and ![](https://i.imgur.com/3m1NMRc.png)The result was two new datasets in BAM format.The duplicate rate for both sets was well below 10% which is considered good.The tool standard error reflected the results below of unmatched pairs on chr5 and chr12 that otherwise were not included in the output data.<br>
+RmDup is a tool that identifies PCR duplicates by identifying pairs of reads where multiple reads align to the same exact start position in the genome. PCR duplicates arise from multiple PCR products from the same template binding on the flow cell.These are usually removed because they can lead to false positives<br>The read pair with the highest mapping quality score is kept and the other pairs are discarded.<br>It is important to note that this tool does not work for unpaired reads(in paired end mode) or reads that would pair where each maps to different chromosomes.<br>We used filtered reads datasets(BAM file) from the normal and the tumor tissue data- *outputs of Filter BAM datasets on a variety of attributes* 
+We ran RmDup on the following parameters:![](https://i.imgur.com/b2IeqaC.png)and ![](https://i.imgur.com/3m1NMRc.png)The result was two new datasets in BAM format.The duplicate rate for both sets was well below 10% which is considered good.The tool standard error reflected the results below of unmatched pairs on chr5 and chr12 that otherwise were not included in the output data.<br>
 ![](https://i.imgur.com/PCxnoWE.png)
 	
 
-#Left-align reads around indels
+## Left-align reads around indels
 
 The first Step in this is running the BamLeftAlign tool from the Tools set available on Galaxy. Then we have chosen the source for the reference genome as Locally cached and selected the filtered and dedicated reads datasets from the normal and the tumor tissue data which were the outputs of RmDup. Then we used Human: hg19 aa the genome reference  and set the maximum number of iterations as 5, keeping all other settings as default and finally this will generate two new datasets, that is,one for each of the normal and tumor data.
 
-#Recalibrate read mapping qualities
+## Recalibrate read mapping qualities
 
 The next step after Left aligning the reads around indels is  Recalibrating the read mapping qualities.
 
 •RECALIBRATE READ QUALITY SCORES :
 The first Step in Recalibrating read mapping qualities is running CalMD tool from Galaxy tool set. Firstly we have selected the left-aligned datasets from the normal and the tumor tissue data; the outputs of BamLeftAlign tool as the input for the BAM file to recalculate. Them we chose the source of reference genome as Use a built in genome as the required hg 19 reference genome was already in built in the Galaxy version we were using. We chose Advanced options as the choice for Additional options and we selected 50 as the Coefficient to cap the mapping quality of poorly mapped reads. And finally this step would produce two new datasets, that is one for each of the normal and tumor data.
 
-#Refilter reads based on mapping quality
+## Refilter reads based on mapping quality
 
 Eliminating reads with undefined mapping quality
-We ran Filter BAM datasets on a variety of attributes tool using some parameters.          The  recalibrated datasets from the normal and the tumor tissue data which were the outputs of CalMD were selected as the BAM datasets to filter. Then we applied certain conditions as the options , in Filter, we selecte the MapQuality as the BAM property to Filter. Then set the value of less than or equal to 254 (<=254) as the Filter on read mapping quality (phred scale).
+We ran Filter BAM datasets on a variety of attributes tool using some parameters. The  recalibrated datasets from the normal and the tumor tissue data which were the outputs of CalMD were selected as the BAM datasets to filter. Then we applied certain conditions as the options , in Filter, we selecte the MapQuality as the BAM property to Filter. Then set the value of less than or equal to 254 (<=254) as the Filter on read mapping quality (phred scale).
 
 
 ## Adding genetic and clinical evidence_based annotation : Creating a GEMINI database for variants
@@ -184,13 +184,13 @@ These loaded variants in the gemini database are then annoatated by GEMINI annot
 Hence, we used Gemini annotate to extract three values : Somatic Status(SS), Germline p-value (GPV) and Somatic p-value(SPV) from the info generated by VarScan and added them to the Gemini database.
 In order to crosscheck if all information extracted by the GEMINI database are in relation to variants observed in the population, we decided to annote by adding more information from the Single Nucleotide Polymorphism Database(dbSNP), also from Cancer Hotspots, links to CIViC database as well as more information from the Cancer Genome Interpreter (CGI)
 
-For dbSNP: the last output from Gemini annotate was annotated with the imported dbSNP using the Gemini annotate tool. This process extrated dbSNP SNP Allele Origin (SAO) and adds it as "rs_ss" column to the existing database.
+- For dbSNP: the last output from Gemini annotate was annotated with the imported dbSNP using the Gemini annotate tool. This process extrated dbSNP SNP Allele Origin (SAO) and adds it as "rs_ss" column to the existing database.
 
-For Cancerhotspots: the last ouput generated from annotating dbSNP information was then annotated using GEMINI annotate tool, using the imported cancer hotspots as annotation source to extract "q-values" of overlapping cancerhotspots and add them as "hs_qvalue" column to the existing database.
+- For Cancerhotspots: the last ouput generated from annotating dbSNP information was then annotated using GEMINI annotate tool, using the imported cancer hotspots as annotation source to extract "q-values" of overlapping cancerhotspots and add them as "hs_qvalue" column to the existing database.
 
-Links to CIVic: the output of the last Gemini annoate for cancerhotspots was annotated using the imported CIViC bed as annotation source. We extracted 4 elements from this source and again added them as a list of "overlapping_civic_urls" to the existing Gemini database.
+- Links to CIVic: the output of the last Gemini annoate for cancerhotspots was annotated using the imported CIViC bed as annotation source. We extracted 4 elements from this source and again added them as a list of "overlapping_civic_urls" to the existing Gemini database.
 
-For the Cancer Genome Interpreter: the last output with the extracted infomation linking to CIViC was further annotated using the tool Gemini annotate with the imported CGI variants as an annotation source. the information extracted was recorded in the Gemini database as "in_cgidb" being used as the column name.
+- For the Cancer Genome Interpreter: the last output with the extracted infomation linking to CIViC was further annotated using the tool Gemini annotate with the imported CGI variants as an annotation source. the information extracted was recorded in the Gemini database as "in_cgidb" being used as the column name.
 
 
  ## Reporting Selected Subsets of Variants with GEMINI Query
@@ -216,7 +216,7 @@ By default, the report of this run would be output in tabular format; and a colu
 The following columns were selected
 
 *	“chrom”
-* “start”
+* 	“start”
 *	“ref”
 *	“alt”
 
@@ -279,7 +279,7 @@ i) Quality check.
 The quality of the reads was examined using fastqc and an aggregate report of all the fastqc reports generated by multiqc.
 
 ```
-#Qc on reads
+##  Qc on reads
 mkdir Fastqc
 fastqc *.fastq.gz -o Fastqc -t 8
 
@@ -313,7 +313,7 @@ iii) Post trimming Quality Control.
 An assesement of the quality of the trimmed reads was carried out using Fastqc and Multiqc.
 
 ```
-#Post trimming qc
+## Post trimming qc
 mkdir Post_trim_fastqc
 fastqc *_paired.fastq.gz -o Post_trim_fastqc -t 8
 
@@ -338,7 +338,7 @@ The commands: **samtools sort -T temp -O bam -o SLGFSK35.sorted.bam SLGFSK35.bam
 
 ### Mapped reads filtering
 To filter for the mapped reads the command **samtools view -b -F SLGFSK35.bam >SLGFSK35.bam and samtools view -b -F SLGFSK36.bam >SLGFSK36.bam.**
-Their were 21200965 mapped reads for  SLGFSK35.bam  and 32643682 mapped reads for SLGFSK36.bam
+There were 21200965 mapped reads for  SLGFSK35.bam  and 32643682 mapped reads for SLGFSK36.bam
 
 ### Duplicates removal
 During library construction sometimes there's introductio of PCR (Polymerase Chain Reaction) duplicates, these duplicates usually can result in false SNPs (Single Nucleotide Polymorphisms), whereby the can manifest themselves as high read depth support. A low number of duplicates (<5%) in good libraries is considered standard.
@@ -350,7 +350,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 ##  List of team members according to the environment used:
 
 1. Galaxy Workflow:
-- @Rachael
+- @Rachael - Adding genetic and clinical evidence-based annotations [https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1]
 - @Mercy
 - @Orinda
 - @Heshica
@@ -362,7 +362,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @Olamide - Read Trimming and Filtering
 - @NadaaHussienn - Quality Control and Check
 - @Christabel
-- @Marvellous - [Workflow 1](https://usegalaxy.eu/u/o.m.o./w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs) and [Workflow 2](https://usegalaxy.eu/u/o.m.o./w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs-2) 
+- @Marvellous  
 
 
 2. Linux Workflow
