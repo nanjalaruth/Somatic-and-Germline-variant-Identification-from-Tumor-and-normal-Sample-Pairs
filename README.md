@@ -258,7 +258,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 - @Rachael 
 - @Mercy
 - @Orinda
-- @Heshica
+- @Heshica -https://usegalaxy.eu/u/heshica_battina_chowdary/w/normal-and-tumor-analysisheshica-genomics-2a ( Galaxy Workflow link )
 - @Kauthar
 - @VioletNwoke
 - @AmaraA
