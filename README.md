@@ -115,6 +115,21 @@ Paramaters
 - For parameters not listed, default setting was used.
 
 ## Mapped Read Postprocessing
+#### MAPPED READS 
+Tool:![](https://i.imgur.com/xkurc1C.png)
+##### a) Mapped reads filtering
+
+Significance: This produces newly filtered BAM datasets and only retains reads mapped to the reference successfully and have a minimal mapping quality of 1 and for which the mate read has also been mapped.
+
+
+![](https://i.imgur.com/7uymv1Z.png)was run
+with these parameters:
+The BAM datasets we filtered were:
+1. The output of Map with BWA(mapped reads in BAM format)
+![](https://i.imgur.com/AWEyljF.png)
+2. The output of Map with BWA (mapped reads in BAM format)![](https://i.imgur.com/VmShNr5.png)
+
+The quality of the output data is controlled by a series ofconditions and filters listed below:
 
 ### Duplicate Reads Removal
 Tool:![](https://i.imgur.com/OPq6wgU.png)
