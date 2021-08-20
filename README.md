@@ -122,8 +122,7 @@ The quality of the output data is controlled by a series ofconditions and filter
 
 The BAM tools filter was run with these parameters:
 The BAM datasets we filtered were:
-1. The output of Map with BWA(mapped reads in BAM format)
-![](https://i.imgur.com/AWEyljF.png)
+1. The output of Map with BWA (mapped reads in BAM format)![](https://i.imgur.com/AWEyljF.png)
 2. The output of Map with BWA (mapped reads in BAM format)![](https://i.imgur.com/VmShNr5.png)
 
 The quality of the output data is controlled by a series of conditions and filters.
@@ -135,14 +134,11 @@ The second filter involved selecting another BAM property to filter,for which we
 
 The third filter involved selecting yet another BAM property to filter for which we selected isMateMapped (for paired-end reads with long inserts)+a confirmation to select mapped reads>yes
 
-The last condition set involving opting to set rules for which we selected>No
-
-![](https://i.imgur.com/p9NcqM1.png)Then we ran the job
-
-This was done for both the normal and tumor tissue data thus resulting in two datasets in the output results
+The last condition set involving opting to set rules for which we selected >No ![](https://i.imgur.com/p9NcqM1.png)
+Then we ran the job. This was done for both the normal and tumor tissue data thus resulting in two datasets in the output results
 
 	
-### Duplicate Reads Removal
+## Duplicate Reads Removal
 Tool: ![](https://i.imgur.com/OPq6wgU.png)
 
 #### Significance
