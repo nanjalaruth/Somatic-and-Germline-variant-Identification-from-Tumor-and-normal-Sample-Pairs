@@ -176,13 +176,9 @@ bwa mem -R '@RG\tID:231335\tSM:Normal' hg19.chr5_12_17.fa trimmed_reads/SLGFSK-N
        trimmed_reads/SLGFSK-N_231335_r2_paired.fq.gz > Mapping/SLGFSK-N_231335.sam
 
 bwa mem -R '@RG\tID:231336\tSM:Tumor' hg19.chr5_12_17.fa trimmed_reads/SLGFSK-T_231336_r1_paired.fq.gz \
-        trimmed_reads/SLGFSK-T_231336_r2_paired.fq.gz > Mapping/SLGFSK-T_231336.sam
+        trimmed_reads/SLGFSK-T_231336_r2_paired.fq.gz > Mapping/SLGFSK-T_231336.sam	
 	
-# -R is used to include the Read Group (RG) field to the file.
 ```
-* RG identifier (ID) was set to 231335 for the normal sample and 231336 for the tumor sample
-* RG sample name (SM) was set to `Normal` fot the normal sample and `Tumor` for the tumor sample
-
 	
 #### Conversion of the SAM file to BAM file, sorting and indexing
 A Binary Alignment Map (BAM) format is an equivalent to sam but its developed for fast processing and indexing. It stores every read base, base quality and uses a single conventional technique for all types of data.
@@ -207,10 +203,6 @@ do
 	#Filter BAM files
         samtools view -q 1 -f 0x2 -F 0x8 -b Mapping/${sample}.sorted.bam > Mapping/${sample}.filtered1.bam
 done
-
-# -q signifies the quality score
-# -f 0x2 selects mapped reads
-# -F 0x8 selects reads with mapped mate
 ```
 
 To view the output of the results use :
@@ -241,11 +233,6 @@ for sample in `cat list.txt`
 do
         #-c -> compressed, -m -> max-iterations
         cat Mapping/${sample}.clean.bam  | bamleftalign -f hg19.chr5_12_17.fa -m 5 -c > Mapping/${sample}.leftAlign.bam
-done
-
-#-m signifies the number of iterations
-#-c is the compressed format
-#-f is the reference genome
 ```
 
 #### Recalibrate read mapping qualities
@@ -254,9 +241,6 @@ for sample in `cat list.txt`
 do
         samtools calmd -@ 32 -b Mapping/${sample}.leftAlign.bam hg19.chr5_12_17.fa > Mapping/${sample}.recalibrate.bam
 done
-
-#-@ rep number of cores assigned to the task
-#-b output the results as a bam file
 ```
 	
 #### Refilter read mapping qualities
@@ -289,9 +273,6 @@ do
         samtools mpileup -f hg19.chr5_12_17.fa Mapping/${sample}.refilter.bam --min-MQ 1 --min-BQ 28 \
                 > Variants/${sample}.pileup
 done
-
-#--min-MQ is the minimum mapping quality
-#--min-BQ is the minimum base quality
 ```
 
 #### Call variants
@@ -477,18 +458,18 @@ We run RmDup on the following parameters:![](https://i.imgur.com/b2IeqaC.png)and
 ![](https://i.imgur.com/PCxnoWE.png)
 	
 
-#Left-align reads around indels
+### Left-align reads around indels
 
 The first Step in this is running the BamLeftAlign tool from the Tools set available on Galaxy. Then we have chosen the source for the reference genome as Locally cached and selected the filtered and dedicated reads datasets from the normal and the tumor tissue data which were the outputs of RmDup. Then we used Human: hg19 aa the genome reference  and set the maximum number of iterations as 5, keeping all other settings as default and finally this will generate two new datasets, that is,one for each of the normal and tumor data.
 
-#Recalibrate read mapping qualities
+### Recalibrate read mapping qualities
 
 The next step after Left aligning the reads around indels is  Recalibrating the read mapping qualities.
 
 •RECALIBRATE READ QUALITY SCORES :
 The first Step in Recalibrating read mapping qualities is running CalMD tool from Galaxy tool set. Firstly we have selected the left-aligned datasets from the normal and the tumor tissue data; the outputs of BamLeftAlign tool as the input for the BAM file to recalculate. Them we chose the source of reference genome as Use a built in genome as the required hg 19 reference genome was already in built in the Galaxy version we were using. We chose Advanced options as the choice for Additional options and we selected 50 as the Coefficient to cap the mapping quality of poorly mapped reads. And finally this step would produce two new datasets, that is one for each of the normal and tumor data.
 
-#Refilter reads based on mapping quality
+### Refilter reads based on mapping quality
 
 Eliminating reads with undefined mapping quality
 We ran Filter BAM datasets on a variety of attributes tool using some parameters.          The  recalibrated datasets from the normal and the tumor tissue data which were the outputs of CalMD were selected as the BAM datasets to filter. Then we applied certain conditions as the options , in Filter, we selecte the MapQuality as the BAM property to Filter. Then set the value of less than or equal to 254 (<=254) as the Filter on read mapping quality (phred scale).
@@ -592,7 +573,7 @@ The last output of the Join operation was selected in the “file to arrange” 
 - @Rachael - Adding genetic and clinical evidence-based annotations [Link to galaxy workflow](https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1)
 - @Mercy
 - @Orinda
-- @Heshica
+- @Heshica - Mapped Read Postprocessing (Left-align reads around indels , Recalibrate read mapping qualities and Refilter reads based on mapping quality)[Link to Galaxy Workflow](https://usegalaxy.eu/u/heshica_battina_chowdary/w/normal-and-tumor-analysisheshica-genomics-2a)
 - @VioletNwoke - Read mapping [Link to galaxy workflow](https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
 - @AmaraA
 - @Amarachukwu -Gemini query [Link to Galaxy workflow](https://usegalaxy.eu/u/amara_chike/w/somatic-variant-tutorial-genomics-2-a-1) 
