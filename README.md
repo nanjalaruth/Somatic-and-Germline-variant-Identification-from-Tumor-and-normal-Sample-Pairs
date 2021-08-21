@@ -181,7 +181,7 @@ bwa mem -R '@RG\tID:231336\tSM:Tumor' hg19.chr5_12_17.fa trimmed_reads/SLGFSK-T_
 ```
 	
 #### Conversion of the SAM file to BAM file, sorting and indexing
-A BAM(Binary Alignment/Map) format is an equivalent to sam but its developed for fast processing and indexing. It stores every read base, base quality and uses a single conventional technique for all types of data.
+A Binary Alignment Map (BAM) format is an equivalent to sam but its developed for fast processing and indexing. It stores every read base, base quality and uses a single conventional technique for all types of data.
 The produced BAM files were sorted by read name and indexing was done for faster or rapid  retrieval. At the end of the every BAM file,  a special end of file (EOF) marker is usually written, the samtools index command also checks for this and produces an error message if its not found.
 	
 ```
@@ -211,7 +211,7 @@ samtools flagstat <bam file>
 ```
 
 #### Duplicates removal
-During library construction sometimes there's introductio of PCR (Polymerase Chain Reaction) duplicates, these duplicates usually can result in false SNPs (Single Nucleotide Polymorphisms), whereby the can manifest themselves as high read depth support. A low number of duplicates (<5%) in good libraries is considered standard.
+During library construction sometimes there's introduction of PCR (Polymerase Chain Reaction) duplicates, these duplicates usually can result in false SNPs (Single Nucleotide Polymorphisms), whereby the can manifest themselves as high read depth support. A low number of duplicates (<5%) in good libraries is considered standard.
 
 ```
 #use the command <markdup>
@@ -250,6 +250,51 @@ do
         bamtools filter -in Mapping/${sample}.recalibrate.bam -mapQuality "<=254" > Mapping/${sample}.refilter.bam	
 done
 ```
+
+## Variant calling and classification
+<http://varscan.sourceforge.net/somatic-calling.html>
+	
+### Description	
+
+### Installation 
+```
+wget https://sourceforge.net/projects/varscan/files/VarScan.v2.3.9.jar
+		
+```
+
+### Command
+#### Convert data to pileup
+Varscan works with data in pieup format. You therefore have to convert your data to pileup.
+```
+mkdir Variants
+
+for sample in `cat list.txt`
+do
+        samtools mpileup -f hg19.chr5_12_17.fa Mapping/${sample}.refilter.bam --min-MQ 1 --min-BQ 28 \
+                > Variants/${sample}.pileup
+done
+```
+
+#### Call variants
+```
+java -jar VarScan.v2.3.9.jar somatic Variants/SLGFSK-N_231335.pileup \
+        Variants/SLGFSK-T_231336.pileup Variants/SLGFSK \
+        --normal-purity 1  --tumor-purity 0.5 --output-vcf 1 
+```
+The above command reports germline, somatic, and LOH events at positions where both normal and tumor samples have sufficient coverage 
+
+#### Merge vcf
+VarScan generates 2 outputs (indel.vcf and snp.vcf), merge the two into one vcf file using bcftools.
+```
+#merge vcf
+bgzip Variants/SLGFSK.snp.vcf > Variants/SLGFSK.snp.vcf.gz
+bgzip Variants/SLGFSK.indel.vcf > Variants/SLGFSK.indel.vcf.gz
+tabix Variants/SLGFSK.snp.vcf.gz
+tabix Variants/SLGFSK.indel.vcf.gz
+bcftools merge Variants/SLGFSK.snp.vcf.gz Variants/SLGFSK.indel.vcf.gz > Variants/SLGFSK.vcf
+```
+		
+		
 	
 	
 	
