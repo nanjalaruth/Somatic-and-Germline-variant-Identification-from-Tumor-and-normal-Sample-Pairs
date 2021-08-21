@@ -107,8 +107,10 @@ From the report, the reads quality are great, a few adapters are however observe
 
 `Trimmomatic` is a wrapper script that automate quality and adapter trimming. After analyzing data quality, the next step is to remove sequences that do not meet quality standards. 	
 The parameters shown below were used during trimming:
-	PE - paired end
-	threads - number of cores assigned to the task
+
+PE - paired end
+
+threads - number of cores assigned to the task
 	ILLUMINACLIP - used to remove adapters
 		_Trused3-PE - adapter_
 		_2 - Maximum mismatch count_
