@@ -25,13 +25,12 @@ We reproduced this tutorial both as a Galaxy Tutorial as well as Linux Pipeline.
 ### `Go To Section:`
 
 1. [Introduction](#introduction)
-2. [Section One: Galaxy Workflow](#galaxy)
-3. [Section Two: Linux Pipeline](#linux)
-4. [Contributors](#contributor)
+2. [Section Two: Linux Pipeline](#linux)
+3. [Section One: Galaxy Workflow](#galaxy)
+5. [Contributors](#contributor)
 
 
-
-# Section Two: `Linux Pipeline`<a name="linux">.</a>
+# Section One: `Linux Pipeline`<a name="linux">.</a>
 
 <Lets add the Linux Section here>
 
@@ -152,7 +151,8 @@ During library construction sometimes there's introductio of PCR (Polymerase Cha
 The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rmdup SLGFSK36.sorted.bam  SLGFSK36.rdup.** 
 
 
-# Section one:  `GALAXY WORKFLOW` <a name="galaxy">.</a>
+
+# Section Two:  `GALAXY WORKFLOW` <a name="galaxy">.</a>
 
 <Lets add the galaxy sections here>
 
