@@ -25,8 +25,8 @@ We reproduced this tutorial both as a Galaxy Tutorial as well as Linux Pipeline.
 ### `Go To Section:`
 
 1. [Introduction](#introduction)
-2. [Section Two: Linux Pipeline](#linux)
-3. [Section One: Galaxy Workflow](#galaxy)
+2. [Section One: Linux Pipeline](#linux)
+3. [Section Two: Galaxy Workflow](#galaxy)
 5. [Contributors](#contributor)
 
 
@@ -512,11 +512,11 @@ GEMINI query syntax is built on the SQLite dialect of SQL. This query language e
 
 “Build GEMINI query using”: *Basic variant query constructor*
 
-“Insert Genotype filter expression”: *gt_alt_freqs.NORMAL <= 0.05 AND gt_alt_freqs.TUMOR >= 0.10*
+“Insert Genotype filter expression”: ```gt_alt_freqs.NORMAL <= 0.05 AND gt_alt_freqs.TUMOR >= 0.10```
 
 This genotype filter aims to read only variants that are supported by less than 5% of the normal sample, but more than 10% of the tumor sample reads collectively
 
- “Additional constraints expressed in SQL syntax”: *somatic_status = 2*
+ “Additional constraints expressed in SQL syntax”: ```somatic_status = 2```
 
 This somatic status called by VarScan somatic is one of the information stored in the GEMINI database.
 
@@ -529,18 +529,18 @@ The following columns were selected
 * “ref”
 * “alt”
 
-* “Additional columns (comma-separated)”: *gene, aa_change, rs_ids, hs_qvalue, cosmic_ids*
+* “Additional columns (comma-separated)”: ```gene, aa_change, rs_ids, hs_qvalue, cosmic_ids```
  These columns are gotten from the variants table of the GEMINI database.
 
 2. This second step has the same settings as the above step except for:
 
-* “Additional constraints expressed in SQL syntax”: *somatic_status = 2 AND somatic_p <= 0.05 AND filter IS NULL*
+* “Additional constraints expressed in SQL syntax”: ```somatic_status = 2 AND somatic_p <= 0.05 AND filter IS NULL```
 
 3. Run GEMINI query with same settings as step two, excepting:
 
 * In “Output format options”
 
-“Additional columns (comma-separated)”: *type, gt_alt_freqs.TUMOR, gt_alt_freqs.NORMAL, ifnull(nullif(round(max_aaf_all,2),-1.0),0) AS MAF, gene, impact_so, aa_change, ifnull(round(cadd_scaled,2),'.') AS cadd_scaled, round(gerp_bp_score,2) AS gerp_bp, ifnull(round(gerp_element_pval,2),'.') AS gerp_element_pval, ifnull(round(hs_qvalue,2), '.') AS hs_qvalue, in_omim, ifnull(clinvar_sig,'.') AS clinvar_sig, ifnull(clinvar_disease_name,'.') AS clinvar_disease_name, ifnull(rs_ids,'.') AS dbsnp_ids, rs_ss, ifnull(cosmic_ids,'.') AS cosmic_ids, ifnull(overlapping_civic_url,'.') AS overlapping_civic_url, in_cgidb*
+“Additional columns (comma-separated)”: ```type, gt_alt_freqs.TUMOR, gt_alt_freqs.NORMAL, ifnull(nullif(round(max_aaf_all,2),-1.0),0) AS MAF, gene, impact_so, aa_change, ifnull(round(cadd_scaled,2),'.') AS cadd_scaled, round(gerp_bp_score,2) AS gerp_bp, ifnull(round(gerp_element_pval,2),'.') AS gerp_element_pval, ifnull(round(hs_qvalue,2), '.') AS hs_qvalue, in_omim, ifnull(clinvar_sig,'.') AS clinvar_sig, ifnull(clinvar_disease_name,'.') AS clinvar_disease_name, ifnull(rs_ids,'.') AS dbsnp_ids, rs_ss, ifnull(cosmic_ids,'.') AS cosmic_ids, ifnull(overlapping_civic_url,'.') AS overlapping_civic_url, in_cgidb```
 
 ## Generating Reports of Genes Affected by Variants
 
@@ -549,9 +549,9 @@ As in the previous step we run GEMINI query but in advanced mode
 
 •	“Build GEMINI query using”: *Advanced query constructor*
 
-•	“The query to be issued to the database”: *SELECT v.gene, v.chrom, g.synonym, g.hgnc_id, g.entrez_id, g.rvis_pct, v.clinvar_gene_phenotype FROM variants v, gene_detailed g WHERE v.chrom = g.chrom AND v.gene = g.gene AND v.somatic_status = 2 AND v.somatic_p <= 0.05 AND v.filter IS NULL GROUP BY g.gene*
+•	“The query to be issued to the database”: ```SELECT v.gene, v.chrom, g.synonym, g.hgnc_id, g.entrez_id, g.rvis_pct, v.clinvar_gene_phenotype FROM variants v, gene_detailed g WHERE v.chrom = g.chrom AND v.gene = g.gene AND v.somatic_status = 2 AND v.somatic_p <= 0.05 AND v.filter IS NULL GROUP BY g.gene```
 
-However the “Genotype filter expression”: *gt_alt_freqs.NORMAL <= 0.05 AND gt_alt_freqs.TUMOR >= 0.10* remains the same
+However the “Genotype filter expression”: ```gt_alt_freqs.NORMAL <= 0.05 AND gt_alt_freqs.TUMOR >= 0.10``` remains the same
 
 
 
@@ -578,7 +578,7 @@ The last output of the Join operation was selected in the “file to arrange” 
 - @Heshica - Mapped Read Postprocessing (Left-align reads around indels , Recalibrate read mapping qualities and Refilter reads based on mapping quality)[Link to Galaxy Workflow](https://usegalaxy.eu/u/heshica_battina_chowdary/w/normal-and-tumor-analysisheshica-genomics-2a)
 - @VioletNwoke - Read mapping [Link to galaxy workflow](https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
 - @AmaraA
-- @Amarachukwu -Gemini query [Link to Galaxy workflow](https://usegalaxy.eu/u/amara_chike/w/somatic-variant-tutorial-genomics-2-a-1) 
+- @Amarachukwu -Reporting Selected Subsets of Variants and Generating Reports of Genes Affected by Variants(GEMINI Query) [Link to Galaxy workflow](https://usegalaxy.eu/u/amara_chike/w/somatic-variant-tutorial-genomics-2-a-1) 
 - @Mallika
 - @Olamide - Read Trimming and Filtering [Link to Galaxy Workflow](https://usegalaxy.eu/u/olamide21/w/identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs) 
 - @NadaaHussienn - Quality Control and Check [Link to Galaxy Workflow](https://usegalaxy.eu/u/nadahussien/w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs-3)
