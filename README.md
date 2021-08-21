@@ -105,7 +105,7 @@ From the report, the reads quality are great, a few adapters are however observe
 
 #### Description
 
-`Trimmomatic` is a wrapper script that automate quality and adapter trimming. After analyzing data quality, the next step is to remove sequences that do not meet quality standards. 	
+`Trimmomatic` is a wrapper script that automate quality and adapter trimming. After analyzing data quality, the next step is to remove sequences that do not meet quality standards. For paired-end data (which is what we had), two input files are specified. The results is 4 output files, 2 for the 'paired' output where both reads survived, and 2 for 'unpaired' output where a read survived, but the partner read did not.	
 
 #### Installation
 ```	
@@ -139,46 +139,83 @@ The parameters shown below were used during trimming:
 * TRAILING - remove trailing bases with low quality of 10
 * MINLEN - remove reads below 25 bases long
 * ILLUMINACLIP - used to remove adapters
-	* _Trused3-PE - adapter_, _2 - Maximum mismatch count_, _30 - Accuracy of the match between the two ‘adapter ligated’ reads for PE palindrome read alignment_, _10 - Accuracy of the match between any adapter against a read_, _8 - Minimum length of adapter that needs to be detected (PE specific/ palindrome mode_
-	
+	* _Trused3-PE - name of adapter used_
+	* _2 - Maximum mismatch count_
+	* _30 - Accuracy of the match between the two ‘adapter ligated’ reads_
+	* _10 - Accuracy of the match between any adapter against a read_
+	* _8 - Minimum length of adapter that needs to be detectede_
 	
 The post trimming multiqc report can be found [here](post_trim_multiqc_report_linux.html). It is evident from the report that the quality of the reads improved having per base quality scores above 35 and no adapters observed. After trimming an average of 0.73% normal reads and 1.24% tumor reads were lost.
 
 **NB: To view the multiqc html reports download the files and view them from your browser.**
 
+
 ## Mapped read postprocessing
- After mapping of the sample sequences against the reference genome with the aim of determining the most likey source of the observed sequencing read. A sAM(sequence   alignment/map)format output is generated. The file has a single unified format for storing read alignments to a reference genome.
+	
+### Description	
+Mapping of sample sequences against the reference genome is conducted with an aim of determining the most likey source of the observed sequencing reads.
+`BWA-MEM` was used for alignment. The results of mapping is a sequence alignment map (SAM) format. The file has a single unified format for storing read alignments to a reference genome.
 
-### Conversion of the SAM file to BAM file
+### Installation 
+```
+conda install -y -c bioconda bwa	
+
+```
+
+### Command
+	
+#### Alignment
+	
+```
+	
+```
+	
+#### Conversion of the SAM file to BAM file
 A BAM(Binary Alignment/Map) format is an equivalent to sam but its developed for fast processing and indexing. It stores every read base, base quality and uses a single conventional technique for all types of data.
-The commands : **samtools view -O BAM SLGFSK35.sam -o SLGFSK55.bam and samtools view -O BAM SLGFSK36.sam -o SLGFSK56.bam was used to produce the BAM file output for subsequent step analysis.**
+	
+```
+```
+	
+#### Sorting and indexing of the BAM file
+The produced BAM files were sorted by read name and indexing was done for faster or rapid  retrieval. At the end of the every BAM file,  a special end of file (EOF) marker is usually written, the samtools index command also checks for this and produces an error message if its not found.
 
-### Sorting and indexing of the BAM file
-The produced BAM files were sorted by read name and indexing was done for faster or rapid  retrieval.
-The commands: **samtools sort -T temp -O bam -o SLGFSK35.sorted.bam SLGFSK35.bam and samtools sort -T temp -O bam -o SLGFSK36.sorted.bam SLGFSK36.bam** to perform sorting. Indexing of the sorted files was done using the **samtools index  SLGFSK35.sorted.bam  and SLGFSK36.sorted.bam.**  At the end of the every BAM file,  a special end of file (EOF) marker is usually written, the samtools index command also checks for this and produces an error message if its not found.
+```
+```
 
 ### Mapped reads filtering
-To filter for the mapped reads the command **samtools view -b -F SLGFSK35.bam >SLGFSK35.bam and samtools view -b -F SLGFSK36.bam >SLGFSK36.bam.**
-Their were 21200965 mapped reads for  SLGFSK35.bam  and 32643682 mapped reads for SLGFSK36.bam
+```
+```
+
+To view the output of the results use :
+```
+samtools flagstat <bam file>
+```
 
 ### Duplicates removal
 During library construction sometimes there's introductio of PCR (Polymerase Chain Reaction) duplicates, these duplicates usually can result in false SNPs (Single Nucleotide Polymorphisms), whereby the can manifest themselves as high read depth support. A low number of duplicates (<5%) in good libraries is considered standard.
-The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rmdup SLGFSK36.sorted.bam  SLGFSK36.rdup.** 
 
+```
+#use the command <markdup>
+
+#or <rmdup>
+samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rmdup SLGFSK36.sorted.bam  SLGFSK36.rdup.
+```
 
 
 # Section Two:  `GALAXY WORKFLOW` <a name="galaxy">.</a>
 
 <Lets add the galaxy sections here>
 
-## 1. Data Preparation:
+## Data Preparation:
 
 The sequencing reads that were used for analysis were obtained from a cancer patient's normal and tumor tissues.
 There were a total of four samples. A forward reads sample and a reverse reads sample was obtained for both the normal and tumor tissue. A human reference genome, hg19 version was also used for analysis.
 
-The first step was to create a new workflow we named Genomics_2_A in the galaxy window. We then imported the 4 fastq files and the reference using the `Upload` button then `Paste/Fetch Data` and pasting the corresponding links to the data, selecting datatype as `fastqsanger.gz` for the fsatq samples and `fasta` for the reference. Once done uploading, the attributes of the samples were edited using the pencil mark to **tumor** and **normal** correspondily for easier identification.
+The first step is to create a new history and rename it in the galaxy window. To import files via links, click on the 'Upload' button on the left side toolbar and select 'Paste/Fetch Data'. Paste the link of your samples here and select datatype as 'fastqsanger.gz'. Click on Start and close the import window.  For the reference genome, paste the link to the file and select the datatype a 'fasta'.
 
-## 2.  Quality Control & Check:
+Once the files are uploaded in the history, click on the pencil icon to edit its attributes. Change the names of the samples such that we can easily differentiate normal tissue samples from tumorous tissue samples. Click on save changes and then click on the renamed dataset. Use the 'Edit Dataset tags' option to add tags to your sample using # before the tag name. This step makes it easier to keep a track of the analysis.
+
+##  Quality Control & Check:
 
 •	FastQC:  is a quality control tool for high throughput sequence data that gives a summary report about the sequence.
 
