@@ -21,13 +21,13 @@ Figure 1: Graphical Abstract for Genomics-Two-A
 
 We reproduced this tutorial both as a Galaxy Tutorial as well as Linux Pipeline.
 
-Go To Section;
+
+### `Go To Section;`
 
 1. [Introduction](#introduction)
 2. [Section One: Galaxy Workflow](#galaxy)
 3. [Section Two: Linux Pipeline](#linux)
 4. [Contributors](#contributor)
-
 
 # Section one:  `GALAXY WORKFLOW` <a name="galaxy">.</a>
 
