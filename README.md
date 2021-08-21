@@ -2,7 +2,7 @@
 <h1 align="center"><pre>Reproduced By Genomics Two A</pre></h1>
 
 
-## `Introduction` <a name="introduction"></a>
+## `Introduction` <a name="introduction">.</a>
 
 Mutations (random single or multiple base changes) in DNA or RNA can have a beneficial (eg in evolution), neutral or harmful effect in an organism. Many diseases including mostly **cancers** (second leading cuase of death) are as a result of harmful mutations in crucial genes eg Tumor suppressor genes, that cause cells to grow and divide uncontrollably, infiltrating and destroying normal body tissues. These mutations can be germline (inhrited) or somatic (acquired after birth), and a common kind of genetic mutation as a result of either is [Loss of Heterozygosity (LOH)](https://en.wikipedia.org/wiki/Loss_of_heterozygosity). LOH usually leads to loss of one normal copy or a group of genes, which is a common even in cancer development. Germline mutations can easily be identified by comparing a sample genome to a reference, however the story is quite different when it comes to somatic mutations as we need both a normal and tumor tissue DNA from the patient. 
 
@@ -105,17 +105,12 @@ From the report, the reads quality are great, a few adapters are however observe
 
 #### Description
 
-`Trimmomatic` is a wrapper script that automate quality and adapter trimming. After analyzing data quality, the next step is to remove sequences that do not meet quality standards. 	
+`Trimmomatic` is a wrapper script to automate quality and adapter trimming as well as quality control.After analyzing the quality of the data, the next step is to remove sequences that do not meet quality standards. Trim_galore combines **Cutadapt** (<http://cutadapt.readthedocs.io/en/stable/guide.html>) and **FastQC** to remove low quality sequences while performing quality analysis to see the effect of filtering.
+The 2 most import parameters to select are: minimum Phred score and minimum sequencing length. A good estimate is typically a Phred score of 20 (99% confidence) and a minimum of 50-70% of the sequence length
+	
+The reads were trimmed with Trimmomatic with the parameters shown below to remove adapter sequences and improve the quality of reads.
 
-#### Installation
-```	
-conda install -c bioconda trimmomatic --yes
-```	
-
-#### Command
 ```
-mkdir -p trimmed_reads
-
 for sample in `cat list.txt`
 do
        trimmomatic PE -threads 8 raw_data/${sample}_r1_chr5_12_17.fastq.gz raw_data/${sample}_r2_chr5_12_17.fastq.gz \
@@ -131,17 +126,6 @@ done
 multiqc  trimmed_reads/Fastqc_results  -o trimmed_reads/Fastqc_results
 
 ```
-	
-The parameters shown below were used during trimming:
-
-PE - paired end
-threads - number of cores assigned to the task, 
-LEADING - remove lead bases with low quality of 3
-TRAILING - remove trailing bases with low quality of 10
-MINLEN - remove reads below 25 bases long
-ILLUMINACLIP - used to remove adapters
-_Trused3-PE - adapter_, _2 - Maximum mismatch count_, _30 - Accuracy of the match between the two ‘adapter ligated’ reads for PE palindrome read alignment_, _10 - Accuracy of the match between any adapter against a read_, _8 - Minimum length of adapter that needs to be detected (PE specific/ palindrome mode_
-	
 	
 The post trimming multiqc report can be found [here](post_trim_multiqc_report_linux.html). It is evident from the report that the quality of the reads improved having per base quality scores above 35 and no adapters observed. After trimming an average of 0.73% normal reads and 1.24% tumor reads were lost.
 
@@ -168,14 +152,16 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 
 
 
-# Section Two:  `GALAXY WORKFLOW` <a name="galaxy">.</a>
 
-<Lets add the galaxy sections here>
+
+
+
+
+# Section Two:  `GALAXY WORKFLOW` <a name="galaxy">.</a>
 
 ## Data Preparation:
 
-The sequencing reads that were used for analysis were obtained from a cancer patient's normal and tumor tissues.
-There were a total of four samples. A forward reads sample and a reverse reads sample was obtained for both the normal and tumor tissue. A human reference genome, hg19 version was also used for analysis.
+We had a total of 2 paired end tissue samples, a normal ([forward](https://zenodo.org/record/2582555/files/SLGFSK-N_231335_r1_chr5_12_17.fastq.gz) and [Reverse](https://zenodo.org/record/2582555/files/SLGFSK-N_231335_r2_chr5_12_17.fastq.gz)) and tumor ([forward](https://zenodo.org/record/2582555/files/SLGFSK-T_231336_r1_chr5_12_17.fastq.gz) and [Reverse](https://zenodo.org/record/2582555/files/SLGFSK-T_231336_r2_chr5_12_17.fastq.gz)), that were to only only chromosome 5, 12 and 17 to speed up the analysis. We used [hg19](wget https://zenodo.org/record/2582555/files/hg19.chr5_12_17.fa.gz) reference genome submsampled to the same chromosomes. 
 
 The first step is to create a new history and rename it in the galaxy window. To import files via links, click on the 'Upload' button on the left side toolbar and select 'Paste/Fetch Data'. Paste the link of your samples here and select datatype as 'fastqsanger.gz'. Click on Start and close the import window.  For the reference genome, paste the link to the file and select the datatype a 'fasta'.
 
