@@ -341,6 +341,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 1. Galaxy Workflow:
 - @Rachael - Adding genetic and clinical evidence-based annotations [Link to galaxy workflow](https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1)
 - @Mercy
+- @Neesah- [Link to galaxy workflow](https://usegalaxy.eu/u/nerdy_neesah1./w/workflow-by-neesah-identification-of-somatic-and-germline-from-tumor-and-normal-samples)
 - @Orinda
 - @Heshica
 - @Kauthar
