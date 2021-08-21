@@ -1,13 +1,9 @@
-# Identification of somatic and germline variants from tumor and normal sample pairs
+<h1 align="center"> Identification of somatic and germline variants from tumor and normal sample pairs </h1>
+<h1 align="center"><pre>Reproduced By Genomics Two A<pre></h1>
 
 
 
-
-
-
-![Graphical Abstract](Graphic_Abstract-Genomics-Two-A.png)
-
-## Introduction
+## `Introduction`
 Mutations are abrupt changes in the sequence of basis in the DNA or RNA of an organism. A single change or more in one of the DNA nucleotides can have a large effect on an organism. This effect can be beneficial, harmful or neutral. Beneficial mutations allow for evolution to occur and they are the ultimate source of genetic variation in any species while harmful mutation result or contribute to diseases like cancer.
 
  typical example of a harmful mutation is cancer.
@@ -18,6 +14,9 @@ These mutations can be germline or somatic. The major difference between the two
 To detect if a cell is cancerous, it is important one compare the genome sequence of a tumour from a patient with healthy tissue from the same patient. By comparing the two, the spectrum of mutations that distinguish the tumour from healthy tissues can be determined and cancerous cells can be detected
 
 This project is aimed at reproducing a workflow on identifying germline and somatic variants, variants affected by loss of heterozygosity in both healthy and tumorous cells, report variant sites and genes affected by them. As such insights can help us fast track the genetic events behind cancerous growth and patients and might be useful in  destroying cancerous cells at early stages and developing therapeutics 
+
+![Graphical Abstract](Graphic_Abstract-Genomics-Two-A.png)
+
 
 This tutorial was reproduced on the Galaxy platform and with Linux Pipeline
 
