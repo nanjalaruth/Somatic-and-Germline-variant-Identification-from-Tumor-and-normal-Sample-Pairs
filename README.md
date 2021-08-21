@@ -2,29 +2,34 @@
 <h1 align="center"><pre>Reproduced By Genomics Two A</pre></h1>
 
 
-## `Introduction` <a name="introduction"> </a>
+## `Introduction` <a name="introduction">.</a>
 
 Mutations (random single or multiple base changes) in DNA or RNA can have a beneficial (eg in evolution), neutral or harmful effect in an organism. Many diseases including mostly **cancers** (second leading cuase of death) are as a result of harmful mutations in crucial genes eg Tumor suppressor genes, that cause cells to grow and divide uncontrollably, infiltrating and destroying normal body tissues. These mutations can be germline (inhrited) or somatic (acquired after birth), and a common kind of genetic mutation as a result of either is [Loss of Heterozygosity (LOH)](https://en.wikipedia.org/wiki/Loss_of_heterozygosity). LOH usually leads to loss of one normal copy or a group of genes, which is a common even in cancer development. Germline mutations can easily be identified by comparing a sample genome to a reference, however the story is quite different when it comes to somatic mutations as we need both a normal and tumor tissue DNA from the patient. 
 
+<br>
 
-> In this project, we aimed at reproducing a workflow that identifies germline and somatic variants, variants affeted by LOH using both a health and tumor tissue, from which we would report variant sites and genes affected that could likely be the cause to the disease. Such insights can help us track the genetic events driving tumorigenesis in patients and might be useful in diagnosis, prognosis, developing and guiding therapeutics.
+> In this project, we aimed at reproducing a workflow that identifies germline and somatic variants, variants affeted by LOH using both a health and tumor tissue, from which we would report variant sites and genes affected that could likely be the cause to the disease. Such insights can help us track the genetic events driving tumorigenesis in patients and might be useful in diagnosis, prognosis, developing and guiding therapeutics strategies.
 
+<br>
 
-
-
+Below is our Graphical abstract summarizing the key we steps to achieve this.
 
 ![Graphical Abstract](Graphic_Abstract-Genomics-Two-A.png)
+Figure 1: Graphical Abstract for Genomics-Two-A
 
+<br>
 
-This tutorial was reproduced on the Galaxy platform and with Linux Pipeline
+We reproduced this tutorial both as a Galaxy Tutorial as well as Linux Pipeline.
 
-Sections;
+Go To Section;
 
 1. [Introduction](#introduction)
-2. [Contributors](#contributor)
+2. [Section One: Galaxy Workflow](#galaxy)
+3. [Section Two: Linux Pipeline](#linux)
+4. [Contributors](#contributor)
 
 
-# Section one:  `GALAXY WORKFLOW`
+# Section one:  `GALAXY WORKFLOW` <a name="galaxy">.</a>
 
 <Lets add the galaxy sections here>
 
@@ -255,7 +260,7 @@ By simply using the Join two files tools on Galaxy, this task was  achieved. Aft
 The last output of the Join operation was selected in the “file to arrange” section. The columns to be specified by name are: gene, chrom, synonym, hgnc_id, entrez_id, rvis_pct, is_TS, in_cgi_biomarkers, clinvar_gene_phenotype, gene_civic_url, and description. The result gotten was a [tabular gene report](https://github.com/Fredrick-Kakembo/Somatic-and-Germline-variant-Identification-from-Tumor-and-normal-Sample-Pairs/blob/main/Galaxy54-%5BColumn_arrange_on_data_53%5D%20(1).tabular), which was easy to understand and interpret.
 
 
-# Section Two: `Linux Pipeline`
+# Section Two: `Linux Pipeline`<a name="linux">.</a>
 
 <Lets add the Linux Section here>
 
@@ -343,7 +348,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 
 
 ---
-##  List of team members according to the environment used: <a name="contributor"> </a>
+##  List of team members according to the environment used: <a name="contributor">.</a>
 
 1. Galaxy Workflow:
 - @Rachael - Adding genetic and clinical evidence-based annotations [Link to galaxy workflow](https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1)
