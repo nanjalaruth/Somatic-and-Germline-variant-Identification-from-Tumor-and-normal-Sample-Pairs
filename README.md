@@ -533,6 +533,7 @@ The last output of the Join operation was selected in the “file to arrange” 
 1. Galaxy Workflow:
 - @Rachael - Adding genetic and clinical evidence-based annotations [Link to galaxy workflow](https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1)
 - @Mercy
+- @Neesah- [link to galaxy workflow](https://usegalaxy.eu/u/nerdy_neesah1./w/workflow-by-neesah-identification-of-somatic-and-germline-from-tumor-and-normal-samples)
 - @Orinda
 - @Heshica
 - @VioletNwoke - Read mapping [Link to galaxy workflow](https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
