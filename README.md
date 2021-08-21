@@ -12,7 +12,7 @@ Mutations (random single or multiple base changes) in DNA or RNA can have a bene
 
 <br>
 
-Below is our Graphical abstract summarizing the key we steps to achieve this.
+Below is our Graphical abstract summarizing the key steps we took to achieve this.
 
 ![Graphical Abstract](Graphic_Abstract-Genomics-Two-A.png)
 Figure 1: Graphical Abstract for Genomics-Two-A
