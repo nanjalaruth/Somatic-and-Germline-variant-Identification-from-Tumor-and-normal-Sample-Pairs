@@ -105,7 +105,7 @@ From the report, the reads quality are great, a few adapters are however observe
 
 #### Description
 
-`Trimmomatic` is a wrapper script that automate quality and adapter trimming. After analyzing data quality, the next step is to remove sequences that do not meet quality standards. 	
+`Trimmomatic` is a wrapper script that automate quality and adapter trimming. After analyzing data quality, the next step is to remove sequences that do not meet quality standards. For paired-end data (which is what we had), two input files are specified. The results is 4 output files, 2 for the 'paired' output where both reads survived, and 2 for 'unpaired' output where a read survived, but the partner read did not.	
 
 #### Installation
 ```	
@@ -139,12 +139,16 @@ The parameters shown below were used during trimming:
 * TRAILING - remove trailing bases with low quality of 10
 * MINLEN - remove reads below 25 bases long
 * ILLUMINACLIP - used to remove adapters
-	* _Trused3-PE - adapter_, _2 - Maximum mismatch count_, _30 - Accuracy of the match between the two ‘adapter ligated’ reads for PE palindrome read alignment_, _10 - Accuracy of the match between any adapter against a read_, _8 - Minimum length of adapter that needs to be detected (PE specific/ palindrome mode_
-	
+	* _Trused3-PE - adapter_
+	* _2 - Maximum mismatch count_
+	* _30 - Accuracy of the match between the two ‘adapter ligated’ reads for PE palindrome read alignment_
+	* _10 - Accuracy of the match between any adapter against a read_
+	* _8 - Minimum length of adapter that needs to be detected (PE specific/ palindrome mode_
 	
 The post trimming multiqc report can be found [here](post_trim_multiqc_report_linux.html). It is evident from the report that the quality of the reads improved having per base quality scores above 35 and no adapters observed. After trimming an average of 0.73% normal reads and 1.24% tumor reads were lost.
 
 **NB: To view the multiqc html reports download the files and view them from your browser.**
+
 
 ## Mapped read postprocessing
  After mapping of the sample sequences against the reference genome with the aim of determining the most likey source of the observed sequencing read. A sAM(sequence   alignment/map)format output is generated. The file has a single unified format for storing read alignments to a reference genome.
