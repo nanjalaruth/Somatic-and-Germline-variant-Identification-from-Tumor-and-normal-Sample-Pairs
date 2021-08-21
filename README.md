@@ -294,8 +294,48 @@ tabix Variants/SLGFSK.indel.vcf.gz
 bcftools merge Variants/SLGFSK.snp.vcf.gz Variants/SLGFSK.indel.vcf.gz > Variants/SLGFSK.vcf
 ```
 		
+## Variant Annotation
+### Functional Annotation using `SnpEff`
+<https://pcingola.github.io/SnpEff/examples/>
 		
-	
+#### Description	
+
+#### Installation 
+```
+#download jar file
+wget https://snpeff.blob.core.windows.net/versions/snpEff_latest_core.zip
+
+# Unzip file
+unzip snpEff_latest_core.zip
+		
+#download snpEff database
+java -jar snpEff.jar download hg19		
+```
+
+#### Command
+```
+#annotate variants
+java -Xmx8g -jar snpEff/snpEff.jar hg19 Variants/SLGFSK.vcf > Variants/SLGFSK.ann.vcf
+```		
+		
+### Clinical Annotation using `gemini`
+<https://gemini.readthedocs.io/en/latest/content/preprocessing.html>
+		
+#### Description
+		
+		
+#### Installation
+```
+wget https://raw.github.com/arq5x/gemini/master/gemini/scripts/gemini_install.py
+python gemini_install.py /usr/local /usr/local/share/gemini
+```
+		
+```
+#### Command
+```
+gemini load -v Variants/SLGFSK.ann.vcf -t snpEff Annotation/gemini.db
+		
+```
 	
 	
 # Section Two:  `GALAXY WORKFLOW` <a name="galaxy">.</a>
@@ -533,7 +573,6 @@ The last output of the Join operation was selected in the “file to arrange” 
 1. Galaxy Workflow:
 - @Rachael - Adding genetic and clinical evidence-based annotations [Link to galaxy workflow](https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1)
 - @Mercy
-- @Neesah- [link to galaxy workflow](https://usegalaxy.eu/u/nerdy_neesah1./w/workflow-by-neesah-identification-of-somatic-and-germline-from-tumor-and-normal-samples)
 - @Orinda
 - @Heshica
 - @VioletNwoke - Read mapping [Link to galaxy workflow](https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
