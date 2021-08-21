@@ -163,18 +163,20 @@ conda install -c bioconda bamtools
 
 ### Command
 	
-#### Read mapping
+#### Alignment
 	
 ```
-In order to align the data, we need a reference to align against.  First, a directory is created for the reference and then copied. The reference is  indexed to be able to align the data.This is done using the command;
-*bwa index hg19.chr5_12_17.fa*
-This produces 5 files in the reference directory that BWA uses during the alignment phase. The 5 files have different extensions named amb,ann,bwt pac and sa. Alignment can be done using the command;
-*bwa mem*
-Note that  bwa is given a location , which is the path to the reference. Now, the two paired-end files are aligned and the alignment output (in SAM format) directed to a file. 24 threads (processors) were used to speed up this process and a read group (i.e sample ID) information was added to the alignment:
- *bwa mem -t 24 -R '@RG\tID:231335\tSM:Normal' ./reference/hg19.chr5_12_17.fa.gz SLGFSK-N_231335_r1_chr5_12_17.fastq.gz  SLGFSK-N_231335_r2_chr5_12_17.fastq.gz >SLGFSK-N_231335_paired.sam*
- *bwa mem -t 24 -R '@RG\tID:231336\tSM:Tumor' ./reference/hg19.chr5_12_17.fa.gz SLGFSK-T_231336_r1_chr5_12_17.fastq.gz SLGFSK-T_231336_r2_chr5_12_17.fastq.gz >SLGFSK-T_231336_paired.sam*
+mkdir Mapping
+	
+#Index reference file	
+bwa index hg19.chr5_12_17.fa
+	
+#Perform alignment
+bwa mem -R '@RG\tID:231335\tSM:Normal' hg19.chr5_12_17.fa trimmed_reads/SLGFSK-N_231335_r1_paired.fq.gz \
+       trimmed_reads/SLGFSK-N_231335_r2_paired.fq.gz > Mapping/SLGFSK-N_231335.sam
 
-
+bwa mem -R '@RG\tID:231336\tSM:Tumor' hg19.chr5_12_17.fa trimmed_reads/SLGFSK-T_231336_r1_paired.fq.gz \
+        trimmed_reads/SLGFSK-T_231336_r2_paired.fq.gz > Mapping/SLGFSK-T_231336.sam	
 	
 ```
 	
@@ -253,16 +255,18 @@ done
 <http://varscan.sourceforge.net/somatic-calling.html>
 	
 ### Description	
+To be able to identify variants from the mapped samples, the tool `VarScan somatic` was used. 
+The command expects both a normal and tumor sample in `Samtools pileup` format and outputs an indel file and snp file.
+The command reports germline, somatic, and LOH events at positions where both normal and tumor samples have sufficient coverage 
 
 ### Installation 
 ```
-wget https://sourceforge.net/projects/varscan/files/VarScan.v2.3.9.jar
-		
+wget https://sourceforge.net/projects/varscan/files/VarScan.v2.3.9.jar		
 ```
 
 ### Command
 #### Convert data to pileup
-Varscan works with data in pieup format. You therefore have to convert your data to pileup.
+
 ```
 mkdir Variants
 
@@ -279,10 +283,9 @@ java -jar VarScan.v2.3.9.jar somatic Variants/SLGFSK-N_231335.pileup \
         Variants/SLGFSK-T_231336.pileup Variants/SLGFSK \
         --normal-purity 1  --tumor-purity 0.5 --output-vcf 1 
 ```
-The above command reports germline, somatic, and LOH events at positions where both normal and tumor samples have sufficient coverage 
 
 #### Merge vcf
-VarScan generates 2 outputs (indel.vcf and snp.vcf), merge the two into one vcf file using bcftools.
+VarScan generates 2 outputs (indel.vcf and snp.vcf), merge the two into one vcf file using `bcftools.`
 ```
 #merge vcf
 bgzip Variants/SLGFSK.snp.vcf > Variants/SLGFSK.snp.vcf.gz
@@ -296,7 +299,8 @@ bcftools merge Variants/SLGFSK.snp.vcf.gz Variants/SLGFSK.indel.vcf.gz > Variant
 ### Functional Annotation using `SnpEff`
 <https://pcingola.github.io/SnpEff/examples/>
 		
-#### Description	
+#### Description
+`SnpEff` is a variant annotator and functional effect predictor. The output is appended to the vcf file with the field `ANN`. A snpEff database is required prior to performing annotation. In case the organism of interest is not present in the snpEff database, you can build the database using the snpEff command. If the organism is present in the database, download it using the snpEff command.
 
 #### Installation 
 ```
@@ -571,8 +575,7 @@ The last output of the Join operation was selected in the “file to arrange” 
 - @Rachael - Adding genetic and clinical evidence-based annotations [Link to galaxy workflow](https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1)
 - @Mercy
 - @Orinda
-- @Heshica - Mapped Read Postprocessing
-(Left-align reads around indels , Recalibrate read mapping qualities and Refilter reads based on mapping quality)[Link to Galaxy Workflow](https://usegalaxy.eu/u/heshica_battina_chowdary/w/normal-and-tumor-analysisheshica-genomics-2a)
+- @Heshica - Mapped Read Postprocessing (Left-align reads around indels , Recalibrate read mapping qualities and Refilter reads based on mapping quality)[Link to Galaxy Workflow](https://usegalaxy.eu/u/heshica_battina_chowdary/w/normal-and-tumor-analysisheshica-genomics-2a)
 - @VioletNwoke - Read mapping [Link to galaxy workflow](https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
 - @AmaraA
 - @Amarachukwu -Gemini query [Link to Galaxy workflow](https://usegalaxy.eu/u/amara_chike/w/somatic-variant-tutorial-genomics-2-a-1) 
