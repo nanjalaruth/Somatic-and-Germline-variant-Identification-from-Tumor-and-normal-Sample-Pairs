@@ -25,8 +25,8 @@ We reproduced this tutorial both as a Galaxy Tutorial as well as Linux Pipeline.
 ### `Go To Section:`
 
 1. [Introduction](#introduction)
-2. [Section One: Linux Pipeline](#linux)
-3. [Section Two: Galaxy Workflow](#galaxy)
+2. [Section Two: Linux Pipeline](#linux)
+3. [Section One: Galaxy Workflow](#galaxy)
 5. [Contributors](#contributor)
 
 
@@ -146,27 +146,113 @@ The post trimming multiqc report can be found [here](post_trim_multiqc_report_li
 
 **NB: To view the multiqc html reports download the files and view them from your browser.**
 
+	
 ## Mapped read postprocessing
- After mapping of the sample sequences against the reference genome with the aim of determining the most likey source of the observed sequencing read. A sAM(sequence   alignment/map)format output is generated. The file has a single unified format for storing read alignments to a reference genome.
+	
+### Description	
+Mapping of sample sequences against the reference genome is conducted with an aim of determining the most likey source of the observed sequencing reads.
+`BWA-MEM` was used for alignment. The results of mapping is a sequence alignment map (SAM) format. The file has a single unified format for storing read alignments to a reference genome.
 
-### Conversion of the SAM file to BAM file
+### Installation 
+```
+conda install -y -c bioconda bwa
+conda install -c bioconda samtools
+conda install -c bioconda bamtools
+
+```
+
+### Command
+	
+#### Alignment
+	
+```
+mkdir Mapping
+	
+#Index reference file	
+bwa index hg19.chr5_12_17.fa
+	
+#Perform alignment
+bwa mem -R '@RG\tID:231335\tSM:Normal' hg19.chr5_12_17.fa trimmed_reads/SLGFSK-N_231335_r1_paired.fq.gz \
+       trimmed_reads/SLGFSK-N_231335_r2_paired.fq.gz > Mapping/SLGFSK-N_231335.sam
+
+bwa mem -R '@RG\tID:231336\tSM:Tumor' hg19.chr5_12_17.fa trimmed_reads/SLGFSK-T_231336_r1_paired.fq.gz \
+        trimmed_reads/SLGFSK-T_231336_r2_paired.fq.gz > Mapping/SLGFSK-T_231336.sam	
+	
+```
+	
+#### Conversion of the SAM file to BAM file, sorting and indexing
 A BAM(Binary Alignment/Map) format is an equivalent to sam but its developed for fast processing and indexing. It stores every read base, base quality and uses a single conventional technique for all types of data.
-The commands : **samtools view -O BAM SLGFSK35.sam -o SLGFSK55.bam and samtools view -O BAM SLGFSK36.sam -o SLGFSK56.bam was used to produce the BAM file output for subsequent step analysis.**
+The produced BAM files were sorted by read name and indexing was done for faster or rapid  retrieval. At the end of the every BAM file,  a special end of file (EOF) marker is usually written, the samtools index command also checks for this and produces an error message if its not found.
+	
+```
+for sample in `cat list.txt`
+do
+        Convert SAM to BAM and sort it 
+        samtools view -@ 20 -S -b Mapping/${sample}.sam | samtools sort -@ 32 > Mapping/${sample}.sorted.bam
+        
+        Index BAM file
+        samtools index Mapping/${sample}.sorted.bam
+done
+```	
 
-### Sorting and indexing of the BAM file
-The produced BAM files were sorted by read name and indexing was done for faster or rapid  retrieval.
-The commands: **samtools sort -T temp -O bam -o SLGFSK35.sorted.bam SLGFSK35.bam and samtools sort -T temp -O bam -o SLGFSK36.sorted.bam SLGFSK36.bam** to perform sorting. Indexing of the sorted files was done using the **samtools index  SLGFSK35.sorted.bam  and SLGFSK36.sorted.bam.**  At the end of the every BAM file,  a special end of file (EOF) marker is usually written, the samtools index command also checks for this and produces an error message if its not found.
+#### Mapped reads filtering
+	
+```
+for sample in `cat list.txt`
+do
+	#Filter BAM files
+        samtools view -q 1 -f 0x2 -F 0x8 -b Mapping/${sample}.sorted.bam > Mapping/${sample}.filtered1.bam
+done
+```
 
-### Mapped reads filtering
-To filter for the mapped reads the command **samtools view -b -F SLGFSK35.bam >SLGFSK35.bam and samtools view -b -F SLGFSK36.bam >SLGFSK36.bam.**
-Their were 21200965 mapped reads for  SLGFSK35.bam  and 32643682 mapped reads for SLGFSK36.bam
+To view the output of the results use :
+```
+samtools flagstat <bam file>
+```
 
-### Duplicates removal
+#### Duplicates removal
 During library construction sometimes there's introductio of PCR (Polymerase Chain Reaction) duplicates, these duplicates usually can result in false SNPs (Single Nucleotide Polymorphisms), whereby the can manifest themselves as high read depth support. A low number of duplicates (<5%) in good libraries is considered standard.
-The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rmdup SLGFSK36.sorted.bam  SLGFSK36.rdup.** 
 
+```
+#use the command <markdup>
+for sample in `cat list.txt`
+do
+	samtools collate -o Mapping/${sample}.namecollate.bam Mapping/${sample}.filtered1.bam
+        samtools fixmate -m Mapping/${sample}.namecollate.bam Mapping/${sample}.fixmate.bam
+        samtools sort -@ 32 -o Mapping/${sample}.positionsort.bam Mapping/${sample}.fixmate.bam
+        samtools markdup -@32 -r Mapping/${sample}.positionsort.bam Mapping/${sample}.clean.bam
+done
+	
+#or <rmdup>
+samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rmdup SLGFSK36.sorted.bam  SLGFSK36.rdup.
+```
 
+#### Left Align BAM
+```
+for sample in `cat list.txt`
+do
+        #-c -> compressed, -m -> max-iterations
+        cat Mapping/${sample}.clean.bam  | bamleftalign -f hg19.chr5_12_17.fa -m 5 -c > Mapping/${sample}.leftAlign.bam
+```
 
+#### Recalibrate read mapping qualities
+```
+for sample in `cat list.txt`
+do
+        samtools calmd -@ 32 -b Mapping/${sample}.leftAlign.bam hg19.chr5_12_17.fa > Mapping/${sample}.recalibrate.bam
+done
+```
+	
+#### Refilter read mapping qualities
+```
+for sample in `cat list.txt`
+do
+        bamtools filter -in Mapping/${sample}.recalibrate.bam -mapQuality "<=254" > Mapping/${sample}.refilter.bam	
+done
+```
+	
+	
+	
 # Section Two:  `GALAXY WORKFLOW` <a name="galaxy">.</a>
 
 <Lets add the galaxy sections here>
@@ -340,11 +426,11 @@ GEMINI query syntax is built on the SQLite dialect of SQL. This query language e
 
 “Build GEMINI query using”: *Basic variant query constructor*
 
-“Insert Genotype filter expression”: ```gt_alt_freqs.NORMAL <= 0.05 AND gt_alt_freqs.TUMOR >= 0.10```
+“Insert Genotype filter expression”: *gt_alt_freqs.NORMAL <= 0.05 AND gt_alt_freqs.TUMOR >= 0.10*
 
 This genotype filter aims to read only variants that are supported by less than 5% of the normal sample, but more than 10% of the tumor sample reads collectively
 
- “Additional constraints expressed in SQL syntax”: ```somatic_status = 2```
+ “Additional constraints expressed in SQL syntax”: *somatic_status = 2*
 
 This somatic status called by VarScan somatic is one of the information stored in the GEMINI database.
 
@@ -357,18 +443,18 @@ The following columns were selected
 * “ref”
 * “alt”
 
-* “Additional columns (comma-separated)”: ```gene, aa_change, rs_ids, hs_qvalue, cosmic_ids```
+* “Additional columns (comma-separated)”: *gene, aa_change, rs_ids, hs_qvalue, cosmic_ids*
  These columns are gotten from the variants table of the GEMINI database.
 
 2. This second step has the same settings as the above step except for:
 
-* “Additional constraints expressed in SQL syntax”: ```somatic_status = 2 AND somatic_p <= 0.05 AND filter IS NULL```
+* “Additional constraints expressed in SQL syntax”: *somatic_status = 2 AND somatic_p <= 0.05 AND filter IS NULL*
 
 3. Run GEMINI query with same settings as step two, excepting:
 
 * In “Output format options”
 
-“Additional columns (comma-separated)”: ``` type, gt_alt_freqs.TUMOR, gt_alt_freqs.NORMAL, ifnull(nullif(round(max_aaf_all,2),-1.0),0) AS MAF, gene, impact_so, aa_change, ifnull(round(cadd_scaled,2),'.') AS cadd_scaled, round(gerp_bp_score,2) AS gerp_bp, ifnull(round(gerp_element_pval,2),'.') AS gerp_element_pval, ifnull(round(hs_qvalue,2), '.') AS hs_qvalue, in_omim, ifnull(clinvar_sig,'.') AS clinvar_sig, ifnull(clinvar_disease_name,'.') AS clinvar_disease_name, ifnull(rs_ids,'.') AS dbsnp_ids, rs_ss, ifnull(cosmic_ids,'.') AS cosmic_ids, ifnull(overlapping_civic_url,'.') AS overlapping_civic_url, in_cgidb```
+“Additional columns (comma-separated)”: *type, gt_alt_freqs.TUMOR, gt_alt_freqs.NORMAL, ifnull(nullif(round(max_aaf_all,2),-1.0),0) AS MAF, gene, impact_so, aa_change, ifnull(round(cadd_scaled,2),'.') AS cadd_scaled, round(gerp_bp_score,2) AS gerp_bp, ifnull(round(gerp_element_pval,2),'.') AS gerp_element_pval, ifnull(round(hs_qvalue,2), '.') AS hs_qvalue, in_omim, ifnull(clinvar_sig,'.') AS clinvar_sig, ifnull(clinvar_disease_name,'.') AS clinvar_disease_name, ifnull(rs_ids,'.') AS dbsnp_ids, rs_ss, ifnull(cosmic_ids,'.') AS cosmic_ids, ifnull(overlapping_civic_url,'.') AS overlapping_civic_url, in_cgidb*
 
 ## Generating Reports of Genes Affected by Variants
 
@@ -377,9 +463,9 @@ As in the previous step we run GEMINI query but in advanced mode
 
 •	“Build GEMINI query using”: *Advanced query constructor*
 
-•	“The query to be issued to the database”:```SELECT v.gene, v.chrom, g.synonym, g.hgnc_id, g.entrez_id, g.rvis_pct, v.clinvar_gene_phenotype FROM variants v, gene_detailed g WHERE v.chrom = g.chrom AND v.gene = g.gene AND v.somatic_status = 2 AND v.somatic_p <= 0.05 AND v.filter IS NULL GROUP BY g.gene```
+•	“The query to be issued to the database”: *SELECT v.gene, v.chrom, g.synonym, g.hgnc_id, g.entrez_id, g.rvis_pct, v.clinvar_gene_phenotype FROM variants v, gene_detailed g WHERE v.chrom = g.chrom AND v.gene = g.gene AND v.somatic_status = 2 AND v.somatic_p <= 0.05 AND v.filter IS NULL GROUP BY g.gene*
 
-However the “Genotype filter expression”: ```gt_alt_freqs.NORMAL <= 0.05 AND gt_alt_freqs.TUMOR >= 0.10``` remains the same
+However the “Genotype filter expression”: *gt_alt_freqs.NORMAL <= 0.05 AND gt_alt_freqs.TUMOR >= 0.10* remains the same
 
 
 
@@ -406,7 +492,7 @@ The last output of the Join operation was selected in the “file to arrange” 
 - @Heshica
 - @VioletNwoke - Read mapping [Link to galaxy workflow](https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
 - @AmaraA
-- @Amarachukwu - Reporting Selected Subsets of Variants and Generating reports of Genes affected by variants [Link to Galaxy workflow](https://usegalaxy.eu/u/amara_chike/w/somatic-variant-tutorial-genomics-2-a-1) 
+- @Amarachukwu -Gemini query [Link to Galaxy workflow](https://usegalaxy.eu/u/amara_chike/w/somatic-variant-tutorial-genomics-2-a-1) 
 - @Mallika
 - @Olamide - Read Trimming and Filtering [Link to Galaxy Workflow](https://usegalaxy.eu/u/olamide21/w/identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs) 
 - @NadaaHussienn - Quality Control and Check [Link to Galaxy Workflow](https://usegalaxy.eu/u/nadahussien/w/workflow-constructed-from-history-identification-of-somatic-and-germline-variants-from-tumor-and-normal-sample-pairs-3)
