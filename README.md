@@ -2,20 +2,27 @@
 <h1 align="center"><pre>Reproduced By Genomics Two A</pre></h1>
 
 
-## `Introduction`
+## `Introduction` <a name="introduction"> </a>
 
-Mutations (random single or multiple base changes) in DNA or RNA can have a beneficial (eg in evolution), neutral or harmful effect in an organism. Many diseases including mostly **cancers** (second leading cuase of death) are as a result of harmful mutations in crucial genes eg Tumor suppressor genes, that cause cells to grow and divide uncontrollably, infiltrating and destroying normal body tissues. These mutations can be germline (inhrited) or somatic (acquired after birth), and a common kind of genetic mutation as a result of either is Loss of Heterozygosity (LOH). LOH usually leads to loss of one normal copy or a group of genes, which is a common even in cancer development. 
+Mutations (random single or multiple base changes) in DNA or RNA can have a beneficial (eg in evolution), neutral or harmful effect in an organism. Many diseases including mostly **cancers** (second leading cuase of death) are as a result of harmful mutations in crucial genes eg Tumor suppressor genes, that cause cells to grow and divide uncontrollably, infiltrating and destroying normal body tissues. These mutations can be germline (inhrited) or somatic (acquired after birth), and a common kind of genetic mutation as a result of either is [Loss of Heterozygosity (LOH)](https://en.wikipedia.org/wiki/Loss_of_heterozygosity). LOH usually leads to loss of one normal copy or a group of genes, which is a common even in cancer development. Germline mutations can easily be identified by comparing a sample genome to a reference, however the story is quite different when it comes to somatic mutations as we need both a normal and tumor tissue DNA from the patient. 
+
+
+> In this project, we aimed at reproducing a workflow that identifies germline and somatic variants, variants affeted by LOH using both a health and tumor tissue, from which we would report variant sites and genes affected that could likely be the cause to the disease. Such insights can help us track the genetic events driving tumorigenesis in patients and might be useful in diagnosis, prognosis, developing and guiding therapeutics.
 
 
 
-To detect if a cell is cancerous, it is important one compare the genome sequence of a tumour from a patient with healthy tissue from the same patient. By comparing the two, the spectrum of mutations that distinguish the tumour from healthy tissues can be determined and cancerous cells can be detected
 
-This project is aimed at reproducing a workflow on identifying germline and somatic variants, variants affected by loss of heterozygosity in both healthy and tumorous cells, report variant sites and genes affected by them. As such insights can help us fast track the genetic events behind cancerous growth and patients and might be useful in  destroying cancerous cells at early stages and developing therapeutics 
 
 ![Graphical Abstract](Graphic_Abstract-Genomics-Two-A.png)
 
 
 This tutorial was reproduced on the Galaxy platform and with Linux Pipeline
+
+Sections;
+
+1. [Introduction](#introduction)
+2. [Contributors](#contributor)
+
 
 # Section one:  `GALAXY WORKFLOW`
 
@@ -336,12 +343,11 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 
 
 ---
-##  List of team members according to the environment used:
+##  List of team members according to the environment used: <a name="contributor"> </a>
 
 1. Galaxy Workflow:
 - @Rachael - Adding genetic and clinical evidence-based annotations [Link to galaxy workflow](https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1)
 - @Mercy
-- @Neesah- [Link to galaxy workflow](https://usegalaxy.eu/u/nerdy_neesah1./w/workflow-by-neesah-identification-of-somatic-and-germline-from-tumor-and-normal-samples)
 - @Orinda
 - @Heshica
 - @Kauthar
