@@ -22,7 +22,7 @@ Figure 1: Graphical Abstract for Genomics-Two-A
 We reproduced this tutorial both as a Galaxy Tutorial as well as Linux Pipeline.
 
 
-### `Go To Section;`
+### `Go To Section:`
 
 1. [Introduction](#introduction)
 2. [Section One: Galaxy Workflow](#galaxy)
@@ -348,7 +348,7 @@ The commands **samtools rmdup SLGFSK35.sorted.bam  SLGFSK35.rdup and samtools rm
 
 
 ---
-##  List of team members according to the environment used: <a name="contributor">.</a>
+##  List of team members according to the environment used<a name="contributor">:</a>
 
 1. Galaxy Workflow:
 - @Rachael - Adding genetic and clinical evidence-based annotations [Link to galaxy workflow](https://usegalaxy.eu/u/rachael-eo/w/workflow-constructed-from-history-genomics-twoarachael-1)
