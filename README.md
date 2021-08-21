@@ -1,16 +1,13 @@
 <h1 align="center"> Identification of somatic and germline variants from tumor and normal sample pairs </h1>
-<h1 align="center"><pre>Reproduced By Genomics Two A<pre></h1>
-
+<h1 align="center"><pre>Reproduced By Genomics Two A</pre></h1>
 
 
 ## `Introduction`
-Mutations are abrupt changes in the sequence of basis in the DNA or RNA of an organism. A single change or more in one of the DNA nucleotides can have a large effect on an organism. This effect can be beneficial, harmful or neutral. Beneficial mutations allow for evolution to occur and they are the ultimate source of genetic variation in any species while harmful mutation result or contribute to diseases like cancer.
 
- typical example of a harmful mutation is cancer.
+Mutations (random single or multiple base changes) in DNA or RNA can have a beneficial (eg in evolution), neutral or harmful effect in an organism. Many diseases including mostly **cancers** (second leading cuase of death) are as a result of harmful mutations in crucial genes eg Tumor suppressor genes, that cause cells to grow and divide uncontrollably, infiltrating and destroying normal body tissues. These mutations can be germline (inhrited) or somatic (acquired after birth), and a common kind of genetic mutation as a result of either is Loss of Heterozygosity (LOH). LOH usually leads to loss of one normal copy or a group of genes, which is a common even in cancer development. 
 
-A cell is said to be cancerous when it begins to grow and divide uncontrollably, infiltrates and destroy normal body tissues.
-Cancer is the second leading cause of death in the world and they occur as a result of mutations.
-These mutations can be germline or somatic. The major difference between the two is, the first is inherited while the latter is acquired after birth. Another kind of genetic mutation that can occur is Loss of Heterozygosity which is a result of either somatic or germline mutations. This type of mutation usually lead to the loss of one normal copy of a gene or a group of genes and this is a common event in cancer development.
+
+
 To detect if a cell is cancerous, it is important one compare the genome sequence of a tumour from a patient with healthy tissue from the same patient. By comparing the two, the spectrum of mutations that distinguish the tumour from healthy tissues can be determined and cancerous cells can be detected
 
 This project is aimed at reproducing a workflow on identifying germline and somatic variants, variants affected by loss of heterozygosity in both healthy and tumorous cells, report variant sites and genes affected by them. As such insights can help us fast track the genetic events behind cancerous growth and patients and might be useful in  destroying cancerous cells at early stages and developing therapeutics 
