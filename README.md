@@ -391,7 +391,6 @@ The last output of the Join operation was selected in the “file to arrange” 
 - @Mercy
 - @Orinda
 - @Heshica
-- @Kauthar
 - @VioletNwoke - Read mapping [Link to galaxy workflow](https://usegalaxy.eu/u/violet/w/workflow-constructed-from-history-hackbiogenomicstwoaviolet-4)
 - @AmaraA
 - @Amarachukwu -Gemini query [Link to Galaxy workflow](https://usegalaxy.eu/u/amara_chike/w/somatic-variant-tutorial-genomics-2-a-1) 
